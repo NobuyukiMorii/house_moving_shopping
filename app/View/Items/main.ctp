@@ -58,7 +58,9 @@
         }
         ?>
         </div>
-
+        <div class="center-block text-left" id="button">
+            <button type='button' id="clear" onclick="clear_display()" class='btn btn-info' style='margin : 3px; width : 100px';>クリア</button>  
+        </div>
 
 
         <div class="container">
@@ -79,7 +81,7 @@
                 </div>
                 <div class="col-sm-3">
                     <table id="calculate" class="table">
-                        <tr><th>合計</th><th id="sum">0円</th></tr>
+                        <tr><th>合計</th><th><span id="sum">0</span>円</th></tr>
                         <?php foreach($data as $key => $value) {
                             echo "<tr class='line'><td>".$value['0']['Category']."</td><td>".$value['0']['Price']."円</td></tr>";
                         }
@@ -94,6 +96,16 @@
 <!--/template-->
 	<!-- script references -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <script type="text/javascript">
+            //phpで作成した配列（js_url）をjsに渡す
+            var js_access_url = [];
+            <?php 
+            foreach($js_url as $key => $value) {
+                $js_access_url = "js_access_url['".$key."'] = '".$value."'; ";
+                echo $js_access_url;
+            }
+            ;?>
+        </script>
         <?php echo $this->Html->script('main.js');?>
         <?php echo $this->Html->script('bootstrap.min.js');?>
 	</body>

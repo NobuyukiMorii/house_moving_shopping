@@ -8,300 +8,155 @@ class YahooComponent extends Component {
         return $category_id_url; 
     }
 
-    //アクセスするurlを１つの変数の配列にまとめる
-    public function get_access_url() {
-        //テレビのアクセスurlを取得
-        $access_url['tv'] = $this->make_tv_url();
-        //洗濯機のアクセスurlを取得
-        $access_url['washer'] = $this->make_washer_url();
-        //冷蔵庫のアクセスurlを取得
-        $access_url['fridge'] = $this->make_fridge_url();
-        //電子レンジのアクセスurlを取得
-        $access_url['microwave_oven'] = $this->make_microwave_oven_url();
-        //電気ケトルのアクセスurlを取得
-        $access_url['kettle'] = $this->make_kettle_url();
-        //電気ケトルのアクセスurlを取得
-        $access_url['rice_cooker'] = $this->make_rice_cooker_url();
-        //本棚のアクセスurlを取得
-        $access_url['bookshelf'] = $this->make_bookshelf_url();
-        //ソファーのアクセスurlを取得
-        $access_url['sofa'] = $this->make_sofa_url();
-        //机のアクセスurlを取得
-        $access_url['desk'] = $this->make_desk_url();
-        //椅子のアクセスurlを取得
-        $access_url['chair'] = $this->make_chair_url();
-        //ベッドのアクセスurlを取得
-        $access_url['bed'] = $this->make_bed_url();
-        //マットレスのアクセスurlを取得
-        $access_url['mattress'] = $this->make_mattress_url();
-        //布団のアクセスurlを取得
-        $access_url['coverlet'] = $this->make_coverlet_url();
-        //枕のアクセスurlを取得
-        $access_url['pillow'] = $this->make_pillow_url();
-        //フライパンのアクセスurlを取得
-        $access_url['frying_pan'] = $this->make_frying_pan_url();
-        //皿のアクセスurlを取得
-        $access_url['plate'] = $this->make_plate_url();
-        //包丁のアクセスurlを取得
-        $access_url['knife'] = $this->make_knife_url();
-        //橋のアクセスurlを取得
-        $access_url['chopsticks'] = $this->make_chopsticks_url();
+    //各カテゴリー共通のurl（common_url）の配列。$hitは取得する件数。
+    public function define_common_url_array($hit) {
+        $url['base'] = 'http://shopping.yahooapis.jp/ShoppingWebService/V1/json/itemSearch?';
+        $url['appid'] = 'dj0zaiZpPXdENWwzazJwWDVhcSZzPWNvbnN1bWVyc2VjcmV0Jng9Mzc-';
+        $url['image_size'] = '300';
+        $url['sort'] = '%2Bprice';
+        $url['availability'] = '1';
+        $url['hit'] = $hit;
+        return $url;
+    }
 
-        return $access_url;
-    }
-    //ベースURLを定義する
-    public function make_base_url() {
-        //スタンダードurlの指定
-        $standerd_url = 'http://shopping.yahooapis.jp/ShoppingWebService/V1/json/itemSearch?';
-        //IDの指定
-        $appid = 'dj0zaiZpPXdENWwzazJwWDVhcSZzPWNvbnN1bWVyc2VjcmV0Jng9Mzc-';
-        //画像サイズの指定
-        $image_size = '300';
-        //並び順の指定
-        $sort = '%2Bprice';
-        //在庫（有）の指定
-        $availability = '1';
-        //最大件数の設定
-        $hits = '2';
-        //不変のurlを作成
-        $base_url = $standerd_url.'appid='.$appid.'&image_size='.$image_size.'&sort='.$sort.'&availability='.$availability.'&hits='.$hits;
+    //カテゴリーごとに設定するパラメータ。
+    public function define_parameter_array() {
 
-        return $base_url;
+        $info['tv']['category_id'] = '2504';
+        $info['tv']['price_from'] = '19800';
+        $info['tv']['query'] = '液晶テレビ 20地上・BS';
+
+        $info['washer']['category_id'] = '2505';
+        $info['washer']['price_from'] = '15000';
+        $info['washer']['query'] = '全自動洗濯機';
+
+        $info['fridge']['category_id'] = '2505';
+        $info['fridge']['price_from'] = '20000';
+        $info['fridge']['query'] = '冷蔵庫';
+        
+
+        $info['microwave_oven']['category_id'] = '2505';
+        $info['microwave_oven']['price_from'] = '10000';
+        $info['microwave_oven']['query'] = '電子レンジ';
+
+        $info['kettle']['category_id'] = '2505';
+        $info['kettle']['price_from'] = '3000';
+        $info['kettle']['query'] = '電気ケトル';
+
+        $info['rice_cooker']['category_id'] = '2505';
+        $info['rice_cooker']['price_from'] = '5000';
+        $info['rice_cooker']['query'] = '炊飯器';
+
+        $info['bookshelf']['category_id'] = '2506';
+        $info['bookshelf']['price_from'] = '4000';
+        $info['bookshelf']['query'] = '本棚';
+
+        $info['sofa']['category_id'] = '2506';
+        $info['sofa']['price_from'] = '10000';
+        $info['sofa']['query'] = 'ソファ';
+
+        $info['desk']['category_id'] = '2506';
+        $info['desk']['price_from'] = '7000';
+        $info['desk']['query'] = '机';
+
+        $info['chair']['category_id'] = '2506';
+        $info['chair']['price_from'] = '5000';
+        $info['chair']['query'] = 'チェア';
+
+        $info['bed']['category_id'] = '2506';
+        $info['bed']['price_from'] = '10000';
+        $info['bed']['query'] = 'ベッド';
+
+        $info['mattress']['category_id'] = '2506';
+        $info['mattress']['price_from'] = '10000';
+        $info['mattress']['query'] = 'マットレス';
+
+        $info['coverlet']['category_id'] = '2506';
+        $info['coverlet']['price_from'] = '5000';
+        $info['coverlet']['query'] = '布団';
+
+        $info['pillow']['category_id'] = '2506';
+        $info['pillow']['price_from'] = '3000';
+        $info['pillow']['query'] = '枕';
+
+
+        $info['frying_pan']['category_id'] = '2508';
+        $info['frying_pan']['price_from'] = '1000';
+        $info['frying_pan']['query'] = 'フライパン';
+
+        $info['plate']['category_id'] = '2508';
+        $info['plate']['price_from'] = '100';
+        $info['plate']['query'] = '皿';
+
+        $info['knife']['category_id'] = '2508';
+        $info['knife']['price_from'] = '1000';
+        $info['knife']['query'] = '包丁';
+
+        $info['chopsticks']['category_id'] = '2508';
+        $info['chopsticks']['price_from'] = '100';
+        $info['chopsticks']['query'] = '箸';
+
+        return $info;
+
     }
-    //テレビ情報を取得するURLを定義する
-    public function make_tv_url() {
-        $base_url = $this->make_base_url();
-        //キーワード
-        $query = '液晶テレビ 20地上・BS';
-        //カテゴリーID
-        $category_id = '2504';
-        //最低価格
-        $price_from = '19800';   
-        //アクセスするurl
-        $access_url = $base_url.'&query='.$query.'&category_id='.$category_id.'&price_from='.$price_from;
-        return $access_url;
+
+    //
+    public function define_category_array() {
+        $data['tv']['Category'] = 'テレビ';
+        $data['washer']['Category'] = '洗濯機';
+        $data['fridge']['Category'] = '冷蔵庫';
+        $data['microwave_oven']['Category'] = '電子レンジ';
+        $data['kettle']['Category'] = '電気ケトル';
+        $data['rice_cooker']['Category'] = '炊飯器';
+        $data['bookshelf']['Category'] = '本棚';
+        $data['sofa']['Category'] = 'ソファ';
+        $data['desk']['Category'] = 'デスク';
+        $data['chair']['Category'] = 'チェア';
+        $data['bed']['Category'] = 'ベッド';
+        $data['mattress']['Category'] = 'マットレス';
+        $data['coverlet']['Category'] = '布団';
+        $data['pillow']['Category'] = '枕';
+        $data['frying_pan']['Category'] = 'フライパン';
+        $data['plate']['Category'] = '皿';
+        $data['knife']['Category'] = '包丁';
+        $data['chopsticks']['Category'] = '箸';
+        return $data;
     }
-    //洗濯機の情報を取得するURLを定義する
-    public function make_washer_url() {
-        $base_url = $this->make_base_url();
-        //キーワード
-        $query = '全自動洗濯機';
-        //カテゴリーID
-        $category_id = '2505';
-        //最低価格
-        $price_from = '15000';  
-        //アクセスするurl
-        $access_url = $base_url.'&query='.$query.'&category_id='.$category_id.'&price_from='.$price_from;
-        return $access_url;
+    //アクセスするurlを取得する
+    public function get_url($hit) {
+        //扱う配列を定義
+        $common_url_array = $this->define_common_url_array($hit);
+        $parameter_url_array = $this->define_parameter_array();
+        //カテゴリー共通のurlを作成
+        $common_url = '';
+        foreach ($common_url_array as $key => $value) {
+            if($value === reset($common_url_array)) {
+                $common_url = $value;
+                continue;
+            } 
+            $common_url = $common_url.'&'.$key.'='.$value;
+        }
+        //カテゴリーごとにパラメータを設定する箇所のurlを作成する
+        $parameter_url = array();
+        foreach ($parameter_url_array as $key => $value) {
+            $parameter_url[$key] = '';
+            foreach ($value as $key2 => $value2) {
+                if($value2 === reset($value)) {
+                    $parameter_url[$key] = $key2.'='.$value2;
+                    continue;
+                }
+                $parameter_url[$key] = $parameter_url[$key].'&'.$key2.'='.$value2;
+            }
+        }
+        //共通部分のurlと、カテゴリーごとにパラメータを設定したurlを結合する
+        $url = array();
+        foreach ($parameter_url as $key => $value) {
+            $url[$key] = $common_url.$value;
+            
+        }
+        return $url;
     }
-    //冷蔵庫の情報を取得するURLを定義する
-    public function make_fridge_url() {
-        $base_url = $this->make_base_url();
-        //キーワード
-        $query = '冷蔵庫';
-        //カテゴリーID
-        $category_id = '2505';
-        //最低価格
-        $price_from = '20000';  
-        //アクセスするurl
-        $access_url = $base_url.'&query='.$query.'&category_id='.$category_id.'&price_from='.$price_from;
-        return $access_url;
-    }
-    //電子レンジの情報を取得するURLを定義する
-    public function make_microwave_oven_url() {
-        $base_url = $this->make_base_url();
-        //キーワード
-        $query = '電子レンジ';
-        //カテゴリーID
-        $category_id = '2505';
-        //最低価格
-        $price_from = '10000';  
-        //アクセスするurl
-        $access_url = $base_url.'&query='.$query.'&category_id='.$category_id.'&price_from='.$price_from;
-        return $access_url;
-    }
-    //ケトルの情報を取得するURLを定義する
-    public function make_kettle_url() {
-        $base_url = $this->make_base_url();
-        //キーワード
-        $query = '電気ケトル';
-        //カテゴリーID
-        $category_id = '2505';
-        //最低価格
-        $price_from = '3000';  
-        //アクセスするurl
-        $access_url = $base_url.'&query='.$query.'&category_id='.$category_id.'&price_from='.$price_from;
-        return $access_url;
-    }
-    //炊飯器の情報を取得するURLを定義する
-    public function make_rice_cooker_url() {
-        $base_url = $this->make_base_url();
-        //キーワード
-        $query = '炊飯器';
-        //カテゴリーID
-        $category_id = '2505';
-        //最低価格
-        $price_from = '5000';  
-        //アクセスするurl
-        $access_url = $base_url.'&query='.$query.'&category_id='.$category_id.'&price_from='.$price_from;
-        return $access_url;
-    }
-    //本棚の情報を取得する
-     public function make_bookshelf_url() {
-        $base_url = $this->make_base_url();
-        //キーワード
-        $query = '本棚';
-        //カテゴリーID
-        $category_id = '2506';
-        //最低価格
-        $price_from = '4000';   
-        //アクセスするurl
-        $access_url = $base_url.'&query='.$query.'&category_id='.$category_id.'&price_from='.$price_from;
-        return $access_url;
-    }   
-    //ソファーの情報を取得する
-     public function make_sofa_url() {
-        $base_url = $this->make_base_url();
-        //キーワード
-        $query = 'ソファー';
-        //カテゴリーID
-        $category_id = '2506';
-        //最低価格
-        $price_from = '10000';   
-        //アクセスするurl
-        $access_url = $base_url.'&query='.$query.'&category_id='.$category_id.'&price_from='.$price_from;
-        return $access_url;
-    }
-    //デスクの情報を取得する
-     public function make_desk_url() {
-        $base_url = $this->make_base_url();
-        //キーワード
-        $query = '机';
-        //カテゴリーID
-        $category_id = '2506';
-        //最低価格
-        $price_from = '7000';   
-        //アクセスするurl
-        $access_url = $base_url.'&query='.$query.'&category_id='.$category_id.'&price_from='.$price_from;
-        return $access_url;
-    }
-    //椅子の情報を取得する
-     public function make_chair_url() {
-        $base_url = $this->make_base_url();
-        //キーワード
-        $query = 'チェア';
-        //カテゴリーID
-        $category_id = '2506';
-        //最低価格
-        $price_from = '5000';   
-        //アクセスするurl
-        $access_url = $base_url.'&query='.$query.'&category_id='.$category_id.'&price_from='.$price_from;
-        return $access_url;
-    }
-    //ベッドの情報を取得する
-     public function make_bed_url() {
-        $base_url = $this->make_base_url();
-        //キーワード
-        $query = 'ベッド';
-        //カテゴリーID
-        $category_id = '2506';
-        //最低価格
-        $price_from = '10000';   
-        //アクセスするurl
-        $access_url = $base_url.'&query='.$query.'&category_id='.$category_id.'&price_from='.$price_from;
-        return $access_url;
-    }
-    //マットレスの情報を取得する
-     public function make_mattress_url() {
-        $base_url = $this->make_base_url();
-        //キーワード
-        $query = 'マットレス';
-        //カテゴリーID
-        $category_id = '2506';
-        //最低価格
-        $price_from = '10000';   
-        //アクセスするurl
-        $access_url = $base_url.'&query='.$query.'&category_id='.$category_id.'&price_from='.$price_from;
-        return $access_url;
-    }
-    //布団の情報を取得する
-     public function make_coverlet_url() {
-        $base_url = $this->make_base_url();
-        //キーワード
-        $query = '布団';
-        //カテゴリーID
-        $category_id = '2506';
-        //最低価格
-        $price_from = '5000';   
-        //アクセスするurl
-        $access_url = $base_url.'&query='.$query.'&category_id='.$category_id.'&price_from='.$price_from;
-        return $access_url;
-    }
-    //マクラの情報を取得する
-     public function make_pillow_url() {
-        $base_url = $this->make_base_url();
-        //キーワード
-        $query = '枕';
-        //カテゴリーID
-        $category_id = '2506';
-        //最低価格
-        $price_from = '3000';   
-        //アクセスするurl
-        $access_url = $base_url.'&query='.$query.'&category_id='.$category_id.'&price_from='.$price_from;
-        return $access_url;
-    }
-    //フライパンの情報を取得する
-     public function make_frying_pan_url() {
-        $base_url = $this->make_base_url();
-        //キーワード
-        $query = 'フライパン';
-        //カテゴリーID
-        $category_id = '2508';
-        //最低価格
-        $price_from = '1000';   
-        //アクセスするurl
-        $access_url = $base_url.'&query='.$query.'&category_id='.$category_id.'&price_from='.$price_from;
-        return $access_url;
-    }
-    //食器の情報を取得する
-     public function make_plate_url() {
-        $base_url = $this->make_base_url();
-        //キーワード
-        $query = '皿';
-        //カテゴリーID
-        $category_id = '2508';
-        //最低価格
-        $price_from = '100';   
-        //アクセスするurl
-        $access_url = $base_url.'&query='.$query.'&category_id='.$category_id.'&price_from='.$price_from;
-        return $access_url;
-    }
-    //包丁の情報を取得する
-     public function make_knife_url() {
-        $base_url = $this->make_base_url();
-        //キーワード
-        $query = '包丁';
-        //カテゴリーID
-        $category_id = '2508';
-        //最低価格
-        $price_from = '1000';
-        //アクセスするurl
-        $access_url = $base_url.'&query='.$query.'&category_id='.$category_id.'&price_from='.$price_from;
-        return $access_url;
-    }
-    //箸の情報を取得する
-     public function make_chopsticks_url() {
-        $base_url = $this->make_base_url();
-        //キーワード
-        $query = '箸';
-        //カテゴリーID
-        $category_id = '2508';
-        //最低価格
-        $price_from = '100';
-        //アクセスするurl
-        $access_url = $base_url.'&query='.$query.'&category_id='.$category_id.'&price_from='.$price_from;
-        return $access_url;
-    }
+
     //XMLデータを配列形式で取得する
     public function get_item_data($access_url) {
         //jsonファイルを取得する
@@ -393,5 +248,6 @@ class YahooComponent extends Component {
         }
         return $data;
     }
+
 
 }
