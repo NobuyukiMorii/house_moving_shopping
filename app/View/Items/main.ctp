@@ -98,11 +98,11 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
         <script type="text/javascript">
             //phpで作成した配列（js_url）をjsに渡す
-            var js_access_url = [];
+            var js_url = [];
             <?php 
             foreach($js_url as $key => $value) {
-                $js_access_url = "js_access_url['".$key."'] = '".$value."'; ";
-                echo $js_access_url;
+                $js_url = "js_url['".$key."'] = '".$value."'; ";
+                echo $js_url;
             }
             ;?>
         </script>

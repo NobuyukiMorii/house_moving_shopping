@@ -1,4 +1,4 @@
-console.log(js_access_url);
+console.log(js_url);
 
 //合計金額を取得する
 var sum = $("#sum").html();
