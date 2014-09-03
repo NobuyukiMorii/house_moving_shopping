@@ -77,8 +77,6 @@ function clear_display() {
 //③上記のurlをセットして、ajax通信を始める
 //④成功したら、今表示しているアイテムのhtmlを書き換える（名前と値段とsrcの画像urlと商品名）
 
-//urlのオブジェクト
-console.log(js_url);
 //アイテムのキーを全部取得
 var items = [];
 $("a.change").each(function() {
@@ -88,11 +86,47 @@ var items = $.grep(items, function(e){return e !== undefined;});
 console.log(items);
 //アイテムの単体を取得
 var item =  $('a.change').next("div").attr("id");
-console.log(item);
 
 $(document).ready(function(){
     $('a').click(function(e){
         e.preventDefault();
-        alert('aaaa');
+    	//①クリックされたアイテムのidを検知する
+		var clicked_item = $(this).attr('id');
+		clicked_item = clicked_item.slice(0, -1);
+		//②jsのオブジェクトの中から、クリックされたアイテムがキーのurlを選択する（どうする？？）
+		var access_url = js_url[clicked_item];
+		console.log(access_url);
+		//③ajax通信を始める
+        $.ajax({
+            url: access_url,
+            dataType: 'jsonp', // 追加
+            success: function(json) {
+            	var data = json["ResultSet"][0]["Result"];
+            	delete data['Request']; 
+            	delete data['Modules'];
+            	delete data['_container'];
+            	//値段と画像を定義する
+            	console.log(data[1]['Name']);//名前
+            	console.log(data[1]['ExImage']['Url']);//画像
+            	console.log(data[1]['Price']['_value']);//値段
+            	//これをhtmlを書き換える
+            	var new_price = $(this).find(".active").find(".badge");
+            	console.log(new_price);
+
+
+
+
+            },
+            error: function(json) {
+                alert('データが読み込まれませんでした');
+            }
+        });		
+
+
+
+
+
+
+
     });
 });
