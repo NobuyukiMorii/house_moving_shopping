@@ -68,6 +68,7 @@
                 <div class="col-sm-9">
                     <div class="productsrow">
                         <?php foreach($data as $key => $value) {
+                            echo "<a href = 'javascript:void(0);' class='change'>";
                             echo "<div class='product menu-category' id=".$key.">";
                             echo    "<div class='menu-category-name list-group-item active'>".$value['0']['Category']."<span class='badge'>".$value['0']['Price']."円</span>";
                             echo "</div>";
@@ -76,6 +77,7 @@
                             echo "</div>";
                             echo "<a href='#' class='menu-item list-group-item'>".$value['0']['Name']."</a>";
                             echo "</div>";
+                            echo "</a>";
                         } ;?>
                     </div>
                 </div>
