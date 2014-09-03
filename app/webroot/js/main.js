@@ -98,9 +98,12 @@ $(document).ready(function(){
         var new_price = $(this).children('.active').children('span');
         var new_image = $(this).children('.product-image').children('img');
         var new_name = $(this).next('a');
-        console.log(new_name);
-
-		//③ajax通信を始める
+        //④アイテムがクリックされた回数をカウントする
+        var click_count = 0;
+		$(this).click(function(){
+				click_count++;
+		});
+		//⑤ajax通信を始める
         $.ajax({
             url: access_url,
             dataType: 'jsonp', // 追加
@@ -117,7 +120,7 @@ $(document).ready(function(){
             	$(new_price).html(data[15]['Price']['_value']);
             	$(new_image).attr("src",data[15]['ExImage']['Url']);
             	$(new_name).html(data[15]['Name']);
-
+            	//
 
 
             },
