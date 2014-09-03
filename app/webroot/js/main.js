@@ -83,7 +83,6 @@ $("a.change").each(function() {
     items.push($(this).next("div.menu-category").attr('id'));
 });
 var items = $.grep(items, function(e){return e !== undefined;});
-console.log(items);
 //アイテムの単体を取得
 var item =  $('a.change').next("div").attr("id");
 
@@ -95,7 +94,12 @@ $(document).ready(function(){
 		clicked_item = clicked_item.slice(0, -1);
 		//②jsのオブジェクトの中から、クリックされたアイテムがキーのurlを選択する（どうする？？）
 		var access_url = js_url[clicked_item];
-		console.log(access_url);
+		//③書き換える対象の変数を定義する
+        var new_price = $(this).children('.active').children('span');
+        var new_image = $(this).children('.product-image').children('img');
+        var new_name = $(this).next('a');
+        console.log(new_name);
+
 		//③ajax通信を始める
         $.ajax({
             url: access_url,
@@ -106,13 +110,13 @@ $(document).ready(function(){
             	delete data['Modules'];
             	delete data['_container'];
             	//値段と画像を定義する
-            	console.log(data[1]['Name']);//名前
-            	console.log(data[1]['ExImage']['Url']);//画像
-            	console.log(data[1]['Price']['_value']);//値段
+            	console.log(data[15]['Name']);//名前
+            	console.log(data[15]['ExImage']['Url']);//画像
+            	console.log(data[15]['Price']['_value']);//値段
             	//これをhtmlを書き換える
-            	var new_price = $(this).find(".active").find(".badge");
-            	console.log(new_price);
-
+            	$(new_price).html(data[15]['Price']['_value']);
+            	$(new_image).attr("src",data[15]['ExImage']['Url']);
+            	$(new_name).html(data[15]['Name']);
 
 
 

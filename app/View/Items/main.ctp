@@ -76,7 +76,7 @@
                             echo        "<div class='product-image'>";
                             echo            "<img class='product-image menu-item list-group-item' src=".$value['0']['ImageUrl'].">";
                             echo        "</div>";
-                            echo        "<a href='#' class='menu-item list-group-item'>".$value['0']['Name']."</a>";
+                            echo        "<a href='#' class='menu-item list-group-item name'>".$value['0']['Name']."</a>";
                             echo    "</div>";
                             echo "</a>";
                         } ;?>
