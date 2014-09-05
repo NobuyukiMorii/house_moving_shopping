@@ -77,18 +77,15 @@ function clear_display() {
 //③上記のurlをセットして、ajax通信を始める
 //④成功したら、今表示しているアイテムのhtmlを書き換える（名前と値段とsrcの画像urlと商品名）
 
-//アイテムのキーを全部取得
-var items = [];
-$("a.change").each(function() {
-    items.push($(this).next("div.menu-category").attr('id'));
-});
-var items = $.grep(items, function(e){return e !== undefined;});
-//アイテムの単体を取得
-var item =  $('a.change').next("div").attr("id");
-
 $(document).ready(function(){
     $('a').click(function(e){
         e.preventDefault();
+		//アイテムのキーを全部取得
+		var items = [];
+		$("a.change").each(function() {
+		    items.push($(this).next("div.menu-category").attr('id'));
+		});
+		var items = $.grep(items, function(e){return e !== undefined;});
     	//①クリックされたアイテムのidを検知する
 		var clicked_item = $(this).attr('id');
 		clicked_item = clicked_item.slice(0, -1);
@@ -96,44 +93,53 @@ $(document).ready(function(){
 		var access_url = js_url[clicked_item];
 		//③書き換える対象の変数を定義する
         var new_price = $(this).children('.active').children('span');
+        //console.log(new_price);
         var new_image = $(this).children('.product-image').children('img');
         var new_name = $(this).next('a');
         //④アイテムがクリックされた回数をカウントする
-        var click_count = 0;
-		$(this).click(function(){
-				click_count++;
-		});
-		//⑤ajax通信を始める
-        $.ajax({
-            url: access_url,
-            dataType: 'jsonp', // 追加
-            success: function(json) {
-            	var data = json["ResultSet"][0]["Result"];
-            	delete data['Request']; 
-            	delete data['Modules'];
-            	delete data['_container'];
-            	//値段と画像を定義する
-            	console.log(data[15]['Name']);//名前
-            	console.log(data[15]['ExImage']['Url']);//画像
-            	console.log(data[15]['Price']['_value']);//値段
-            	//これをhtmlを書き換える
-            	$(new_price).html(data[15]['Price']['_value']);
-            	$(new_image).attr("src",data[15]['ExImage']['Url']);
-            	$(new_name).html(data[15]['Name']);
-            	//
+        if(typeof click_count === "undefined") {
+        	click_count = [];
+        }
+        if(typeof click_count[clicked_item] === "undefined") {
+        	click_count[clicked_item] = 0; 
+        }
+        if(click_count[clicked_item] < items.length) {
+			click_count[clicked_item] = click_count[clicked_item] + 1;
+		} else {
+			click_count[clicked_item] = 0;
+		}
 
-
-            },
-            error: function(json) {
-                alert('データが読み込まれませんでした');
-            }
-        });		
-
-
-
-
-
-
+		//⑤もしクリック回数が１回目ならajax通信を始める
+		if(click_count[clicked_item] === 1) {
+			function get_twenty_item(){
+		        $.ajax({
+		            url: access_url,
+		            dataType: 'jsonp', // 追加
+		            success: function(json) {
+		            	var data = json["ResultSet"][0]["Result"];
+		            	delete data['Request']; 
+		            	delete data['Modules'];
+		            	delete data['_container'];
+		            	//これをhtmlを書き換える
+		            	$(new_price).html(data[click_count[clicked_item]]['Price']['_value']);
+		            	$(new_image).attr("src",data[click_count[clicked_item]]['ExImage']['Url']);
+		            	$(new_name).html(data[click_count[clicked_item]]['Name']);
+		            	
+		            },
+		            error: function(json) {
+		                alert('データが読み込まれませんでした');
+		            }
+		        });
+		    }
+	    }   
+	   	data = get_twenty_item();
+	    //これをhtmlを書き換える
+    	$(new_price).html(data[click_count[clicked_item]]['Price']['_value']);//ここがエラー
+    	$(new_image).attr("src",data[click_count[clicked_item]]['ExImage']['Url']);
+    	$(new_name).html(data[click_count[clicked_item]]['Name']);
+    	//値段の表示を置き換える(new price)のclassを見つける
+    	var new_price = $('.new.price');
+    	console.log(new_price);
 
     });
 });

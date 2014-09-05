@@ -86,7 +86,7 @@
                     <table id="calculate" class="table">
                         <tr><th>合計</th><th><span id="sum">0</span>円</th></tr>
                         <?php foreach($data as $key => $value) {
-                            echo "<tr class='line'><td>".$value['0']['Category']."</td><td>".$value['0']['Price']."円</td></tr>";
+                            echo "<tr class='line'><td>".$value['0']['Category']."</td><td class='new_price' >".$value['0']['Price']."円</td></tr>";
                         }
                         ?>
                     </table>
