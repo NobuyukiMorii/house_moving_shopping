@@ -144,9 +144,12 @@ $(document).ready(function(){
             });
 
         }
-
 	   	var data = get_twenty_item();
-
-
     });
+	//クリアボタンが押されたら、クリックカウントを0に戻す
+	$('#clear').click(function(){
+		click_count === "undefined";
+		subtraction = 0;
+	});
+
 });
