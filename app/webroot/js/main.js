@@ -132,7 +132,8 @@ $(document).ready(function(){
 		        });
 		    }
 	    }   
-	   	data = get_twenty_item();
+	   	var data = get_twenty_item();
+	   	console.log(data);
 	    //これをhtmlを書き換える
     	$(new_price).html(data[click_count[clicked_item]]['Price']['_value']);//ここがエラー
     	$(new_image).attr("src",data[click_count[clicked_item]]['ExImage']['Url']);
