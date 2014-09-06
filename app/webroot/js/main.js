@@ -31,7 +31,7 @@ $(function(){
     	$(product[i]).css("display", "none");
     	$(line[i]).css("display", "none");
     }
-    //カンマ区切りにする
+    //カンマ区切りにする関数
 	function addFigure(str) {
 	var num = new String(str).replace(/,/g, "");
 	while(num != (num = num.replace(/^(-?\d+)(\d{3})/, "$1,$2")));
@@ -67,23 +67,7 @@ $(function(){
 		change_button_color(i);
 	}
 
-});	
-
-function clear_display() { 
-	//ボタンのDOMを取得する
-	var button = $("#button").children(".btn");
-	//アイテムのDOMを取得する
-	var product = $(".productsrow").children(".product");
-	//見積表のDOMを取得する
-	var line = $(".line");
-	$(product).css("display", "none");
-	$(line).css("display", "none");
-	$("#sum").html("0");
-	sum = 0;
-	$(button).removeClass("btn-primary");
-	$(button).addClass("btn-default");
-}
-
+});
 
 //①クリックされたアイテムを検知する（何がクリックされたか。テレビなのか洗濯機なのか）
 //②jsのオブジェクトの中から、クリックされたアイテムがキーのurlを選択する（どうする？？）
@@ -91,7 +75,7 @@ function clear_display() {
 //④成功したら、今表示しているアイテムのhtmlを書き換える（名前と値段とsrcの画像urlと商品名）
 
 $(document).ready(function(){
-    $('a').click(function(e){
+    $("a.change").click(function(e){
         e.preventDefault();
 		//アイテムのキーを全部取得
 		var items = [];
@@ -171,10 +155,5 @@ $(document).ready(function(){
         }
 	   	var data = get_twenty_item();
     });
-	//クリアボタンが押されたら、クリックカウントを0に戻す
-	$('#clear').click(function(){
-		click_count === "undefined";
-		subtraction = 0;
-	});
 
 });

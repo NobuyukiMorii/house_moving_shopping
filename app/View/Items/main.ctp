@@ -49,7 +49,11 @@
     <div class="col-md-12">
         <div class="center-block text-center">
             <h1>新生活ネット通販みつもり</h1>
-            <p class="lead">新生活に必要な買い物をササっと揃えよう</p>
+            <p class="lead">初めての引っ越し。結局いくらかかるの？？引っ越しに必要なお金をさっさっと御見積します！！</p>
+            <ol>
+              <li style="text-align:left">ボタンをクリックすると、アイテムが表示されます。</li>
+              <li style="text-align:left">アイテムをクリックすると、他のアイテムに変わります。</li>
+            </ol>
         </div>
 
         <div class="center-block text-left" id="button">
@@ -59,7 +63,9 @@
         ?>
         </div>
         <div class="center-block text-left" id="button">
-            <button type='button' id="clear" onclick="clear_display()" class='btn btn-info' style='margin : 3px; width : 100px';>クリア</button>  
+            <a href=javascript:location.reload()>
+            <button type='button' id="clear" class='btn btn-info' style='margin : 3px; width : 100px';>クリア</button> 
+            </a> 
         </div>
 
 

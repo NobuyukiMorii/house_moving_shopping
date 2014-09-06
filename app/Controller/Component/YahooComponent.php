@@ -13,7 +13,7 @@ class YahooComponent extends Component {
         $url['base'] = 'http://shopping.yahooapis.jp/ShoppingWebService/V1/json/itemSearch?';
         $url['appid'] = 'dj0zaiZpPXdENWwzazJwWDVhcSZzPWNvbnN1bWVyc2VjcmV0Jng9Mzc-';
         $url['image_size'] = '300';
-        $url['sort'] = '%2Bprice';
+        $url['sort'] = '%2Bsold';
         $url['availability'] = '1';
         $url['hit'] = $hit;
         return $url;
