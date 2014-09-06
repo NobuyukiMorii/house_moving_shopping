@@ -93,9 +93,19 @@ $(document).ready(function(){
 		var access_url = js_url[clicked_item];
 		//③書き換える対象の変数を定義する
         var new_price = $(this).children('.active').children('span');
-        //console.log(new_price);
         var new_image = $(this).children('.product-image').children('img');
         var new_name = $(this).next('a');
+    	//値段の表示を置き換える(new price)のclassを見つける
+    	var target = clicked_item + '3';
+    	var line_price = $('.line').find('#' + target);
+    	//合計金額を書き換える
+    	//sumを取得する
+    	//表示するアイテムの価格を足す
+    	//消すアイテムの価格をひく
+    	var subtraction = $(new_price).html();
+    	subtraction = new Array(subtraction.split( '円' ));
+    	subtraction = subtraction[0][0];
+    	subtraction = Number(subtraction);
         //④アイテムがクリックされた回数をカウントする
         if(typeof click_count === "undefined") {
         	click_count = [];
@@ -109,8 +119,6 @@ $(document).ready(function(){
 			click_count[clicked_item] = 0;
 		}
 
-		console.log(click_count[clicked_item]);
-
         function get_twenty_item() {
             //作家情報と通信する
             var yahoo_connect = $.ajax({
@@ -119,23 +127,26 @@ $(document).ready(function(){
             });
             //通信後に実行する処理
             $.when(yahoo_connect).done(function(json){
-            	console.log(json);
             	var data = json["ResultSet"][0]["Result"];
             	delete data['Request']; 
             	delete data['Modules'];
             	delete data['_container'];
+            	//合計金額の書き替え
+		    	sum = sum + Number(data[click_count[clicked_item]]['Price']['_value']);
+		    	sum = sum - subtraction;
+		    	$("#sum").text(sum);
             	//これをhtmlを書き換える
             	$(new_price).html(data[click_count[clicked_item]]['Price']['_value']);
             	$(new_image).attr("src",data[click_count[clicked_item]]['ExImage']['Url']);
             	$(new_name).html(data[click_count[clicked_item]]['Name']);
+		    	$(line_price[0]).html(data[click_count[clicked_item]]['Price']['_value']);
+
             });
 
         }
 
 	   	var data = get_twenty_item();
-    	//値段の表示を置き換える(new price)のclassを見つける
-    	var new_price = $('.new.price');
-    	console.log(new_price);
+
 
     });
 });
