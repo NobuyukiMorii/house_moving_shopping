@@ -17,9 +17,9 @@ $(function(){
 	price = new Array(price.split( '円' ));
 	price = price[0];
 	for(var i = 0; i < price.length; i++) {
+		price[i] = delComma1(price[i]);
 		price[i] = Number(price[i]);
 	}
-
 	//アイテムのカテゴリーを取得する
 	var category = [];
 	$("button").each(function() {
@@ -31,6 +31,17 @@ $(function(){
     	$(product[i]).css("display", "none");
     	$(line[i]).css("display", "none");
     }
+    //カンマ区切りにする
+	function addFigure(str) {
+	var num = new String(str).replace(/,/g, "");
+	while(num != (num = num.replace(/^(-?\d+)(\d{3})/, "$1,$2")));
+	return num;
+	}
+	//カンマを削除する関数
+	function delComma1(w) {
+	    var z = w.replace(/,/g,"");
+	    return (z);
+	}
 	//ボタンを押すと、対象のボタンの色が変わる
 	function change_button_color(i) {
 		$(button[i]).click(function(){
@@ -41,12 +52,14 @@ $(function(){
 				$(button[i]).removeClass("btn-default");
 				$(button[i]).addClass("btn-primary");
 				sum = sum + price[i];
-				$("#sum").text(sum);
+				sum_comma = addFigure(sum);
+				$("#sum").text(sum_comma);
 			} else {
 				$(button[i]).removeClass("btn-primary");
 				$(button[i]).addClass("btn-default");
 				sum = sum - price[i];
-				$("#sum").text(sum);
+				sum_comma = addFigure(sum);
+				$("#sum").text(sum_comma);
 			}
 		});
 	}
@@ -98,14 +111,13 @@ $(document).ready(function(){
     	//値段の表示を置き換える(new price)のclassを見つける
     	var target = clicked_item + '3';
     	var line_price = $('.line').find('#' + target);
-    	//合計金額を書き換える
-    	//sumを取得する
-    	//表示するアイテムの価格を足す
-    	//消すアイテムの価格をひく
+    	//引く金額を取得する
     	var subtraction = $(new_price).html();
     	subtraction = new Array(subtraction.split( '円' ));
     	subtraction = subtraction[0][0];
+    	subtraction = delComma1(subtraction);
     	subtraction = Number(subtraction);
+
         //④アイテムがクリックされた回数をカウントする
         if(typeof click_count === "undefined") {
         	click_count = [];
@@ -118,7 +130,17 @@ $(document).ready(function(){
 		} else {
 			click_count[clicked_item] = 0;
 		}
-
+		//カンマ区切りにする関数
+		function addFigure(str) {
+		var num = new String(str).replace(/,/g, "");
+		while(num != (num = num.replace(/^(-?\d+)(\d{3})/, "$1,$2")));
+		return num;
+		}
+		//カンマを削除する関数
+		function delComma1(w) {
+		    var z = w.replace(/,/g,"");
+		    return (z);
+		}
         function get_twenty_item() {
             //作家情報と通信する
             var yahoo_connect = $.ajax({
@@ -134,12 +156,15 @@ $(document).ready(function(){
             	//合計金額の書き替え
 		    	sum = sum + Number(data[click_count[clicked_item]]['Price']['_value']);
 		    	sum = sum - subtraction;
-		    	$("#sum").text(sum);
+				sum_comma = addFigure(sum);
+				$("#sum").text(sum_comma);
+				//jsonで引いてきた価格をカンマ付きの文字列にする
+				price_comma = addFigure(data[click_count[clicked_item]]['Price']['_value']) + '円';
             	//これをhtmlを書き換える
-            	$(new_price).html(data[click_count[clicked_item]]['Price']['_value']);
+            	$(new_price).html(price_comma);
             	$(new_image).attr("src",data[click_count[clicked_item]]['ExImage']['Url']);
             	$(new_name).html(data[click_count[clicked_item]]['Name']);
-		    	$(line_price[0]).html(data[click_count[clicked_item]]['Price']['_value']);
+		    	$(line_price[0]).html(price_comma);
 
             });
 

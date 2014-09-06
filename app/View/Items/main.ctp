@@ -71,7 +71,7 @@
                             echo "<a href = '' class='change' id=".$key."2 >";
                             echo    "<div class='product menu-category' id=".$key.">";
                             echo        "<div class='menu-category-name list-group-item active'>"
-                                            .$value['0']['Category']."<span class='badge'>".$value['0']['Price']."円</span>";
+                                            .$value['0']['Category']."<span class='badge'>".number_format($value['0']['Price'])."円</span>";
                             echo        "</div>";
                             echo        "<div class='product-image'>";
                             echo            "<img class='product-image menu-item list-group-item' src=".$value['0']['ImageUrl'].">";
@@ -86,7 +86,8 @@
                     <table id="calculate" class="table">
                         <tr><th>合計</th><th><span id="sum">0</span>円</th></tr>
                         <?php foreach($data as $key => $value) {
-                            echo "<tr class='line'><td>".$value['0']['Category']."</td><td id=".$key."3 >".$value['0']['Price']."円</td></tr>";
+
+                            echo "<tr class='line'><td>".$value['0']['Category']."</td><td id=".$key."3 >".number_format($value['0']['Price'])."円</td></tr>";
                         }
                         ?>
                     </table>
