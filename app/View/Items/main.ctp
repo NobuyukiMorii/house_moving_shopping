@@ -84,10 +84,10 @@
                 </div>
                 <div class="col-sm-3">
                     <table id="calculate" class="table">
-                        <tr><th>合計</th><th><span id="sum">0</span>円</th></tr>
+                        <tr><th>合計</th><th style='text-align: right'><span id="sum">0</span>円</th></tr>
                         <?php foreach($data as $key => $value) {
 
-                            echo "<tr class='line'><td>".$value['0']['Category']."</td><td id=".$key."3 >".number_format($value['0']['Price'])."円</td></tr>";
+                            echo "<tr class='line'><td>".$value['0']['Category']."</td><td id=".$key."3 style='text-align: right'>".number_format($value['0']['Price'])."円</td></tr>";
                         }
                         ?>
                     </table>
