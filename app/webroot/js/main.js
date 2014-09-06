@@ -109,29 +109,30 @@ $(document).ready(function(){
 			click_count[clicked_item] = 0;
 		}
 
-		//⑤もしクリック回数が１回目ならajax通信を始める
-		if(click_count[clicked_item] === 1) {
-	        //ここにコードを書く
-	        function get_twenty_item() {
-	            //作家情報と通信する
-	            var yahoo_connect = $.ajax({
-	                url : access_url,
-	             	dataType: 'jsonp', // 追加
-	            });
-	            //通信後に実行する処理
-	            $.when(yahoo_connect).done(function(json){
-	            	var data = json["ResultSet"][0]["Result"];
-	            	delete data['Request']; 
-	            	delete data['Modules'];
-	            	delete data['_container'];
-	            	//これをhtmlを書き換える
-	            	$(new_price).html(data[click_count[clicked_item]]['Price']['_value']);
-	            	$(new_image).attr("src",data[click_count[clicked_item]]['ExImage']['Url']);
-	            	$(new_name).html(data[click_count[clicked_item]]['Name']);
-	            });
+		console.log(click_count[clicked_item]);
 
-	        }
-	    }
+        function get_twenty_item() {
+            //作家情報と通信する
+            var yahoo_connect = $.ajax({
+                url : access_url,
+             	dataType: 'jsonp', // 追加
+            });
+            //通信後に実行する処理
+            $.when(yahoo_connect).done(function(json){
+            	console.log(json);
+            	var data = json["ResultSet"][0]["Result"];
+            	delete data['Request']; 
+            	delete data['Modules'];
+            	delete data['_container'];
+            	//これをhtmlを書き換える
+            	$(new_price).html(data[click_count[clicked_item]]['Price']['_value']);
+            	$(new_image).attr("src",data[click_count[clicked_item]]['ExImage']['Url']);
+            	$(new_name).html(data[click_count[clicked_item]]['Name']);
+            });
+
+        }
+
+	   	var data = get_twenty_item();
     	//値段の表示を置き換える(new price)のclassを見つける
     	var new_price = $('.new.price');
     	console.log(new_price);
