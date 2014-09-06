@@ -47,17 +47,28 @@ $(function(){
 		$(button[i]).click(function(){
 			$(product[i]).toggle();
 			$(line[i]).toggle();
-
+			//押されたボタンのキーを取得する
+			var pushed = $(this).attr("id");
+			pushed = pushed.slice(0, -7);
+			//pushedと同じキーを持ったラインか、アイテムの料金を取得する
+	    	var target = pushed + '3';
+	    	var line_price = $('.line').find('#' + target);
+	    	//引く金額を取得する
+	    	var control_price = $(line_price).html();
+	    	control_price = new Array(control_price.split( '円' ));
+	    	control_price = control_price[0][0];
+	    	control_price = delComma1(control_price);
+	    	control_price = Number(control_price);
 		    if($(this).hasClass("btn-default")) {
 				$(button[i]).removeClass("btn-default");
 				$(button[i]).addClass("btn-primary");
-				sum = sum + price[i];
+				sum = sum + control_price;
 				sum_comma = addFigure(sum);
 				$("#sum").text(sum_comma);
 			} else {
 				$(button[i]).removeClass("btn-primary");
 				$(button[i]).addClass("btn-default");
-				sum = sum - price[i];
+				sum = sum - control_price;
 				sum_comma = addFigure(sum);
 				$("#sum").text(sum_comma);
 			}
