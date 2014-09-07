@@ -179,6 +179,8 @@ class YahooComponent extends Component {
             $data[$key]['ImageUrl'] = $value['ExImage']['Url'];
             //価格
             $data[$key]['Price'] = $value['Price']['_value'];
+            //商品URL
+            $data[$key]['Url'] = $value['Url'];
         }
         return $data;
     }

@@ -71,7 +71,7 @@
 
         <div class="container">
             <div class="menu row">
-                <div class="col-sm-9">
+                <div class="col-sm-8">
                     <div class="productsrow">
                         <?php foreach($data as $key => $value) {
                             echo "<a href = '' class='change' id=".$key."2 >";
@@ -82,13 +82,14 @@
                             echo        "<div class='product-image'>";
                             echo            "<img class='product-image menu-item list-group-item' src=".$value['0']['ImageUrl'].">";
                             echo        "</div>";
-                            echo        "<a href='#' class='menu-item list-group-item name'>".$value['0']['Name']."</a>";
+                            echo        "<a href=".$value['0']['Url']." class='menu-item list-group-item name'>".$value['0']['Name']."<br /><button type='button' class='btn btn-default'>購入する</button></a>";
                             echo    "</div>";
                             echo "</a>";
+
                         } ;?>
                     </div>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <table id="calculate" class="table">
                         <tr><th>合計</th><th style='text-align: right'><span id="sum">0</span>円</th></tr>
                         <?php foreach($data as $key => $value) {
@@ -98,6 +99,7 @@
                         ?>
                     </table>
                 </div>
+
             </div>
         </div>
     </div>

@@ -159,8 +159,8 @@ $(document).ready(function(){
             	$(new_price).html(price_comma);
             	$(new_image).attr("src",data[click_count[clicked_item]]['ExImage']['Url']);
             	$(new_name).html(data[click_count[clicked_item]]['Name']);
+            	$(new_name).attr("href",data[click_count[clicked_item]]['Url']);
 		    	$(line_price[0]).html(price_comma);
-
             });
 
         }
