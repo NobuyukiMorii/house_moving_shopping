@@ -91,8 +91,7 @@
                 </div>
                 <div class="col-sm-4">
                     <table id="calculate" class="table">
-                        <h1><span id="total_sum">0</span>円</h1>
-                        <tr><th>合計</th><th style='text-align: right'><span id="sum">0</span>円</th></tr>
+                        <h1 style='text-align: right'>合計：<span id="sum">0</span>円</h1>
                         <tr><th>カテゴリー</th><th>単価</th><th>数量</th><th>小計</th></tr>
                         <?php foreach($data as $key => $value) {
 

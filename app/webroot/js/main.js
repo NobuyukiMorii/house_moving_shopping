@@ -51,25 +51,34 @@ $(function(){
 			//押されたボタンのキーを取得する
 			var pushed = $(this).attr("id");
 			pushed = pushed.slice(0, -7);
-			//pushedと同じキーを持ったラインか、アイテムの料金を取得する
-	    	var target = pushed + '3';
-	    	var line_price = $('.line').find('#' + target);
-	    	//引く金額を取得する
-	    	var control_price = $(line_price).html();
-	    	control_price = new Array(control_price.split( '円' ));
-	    	control_price = control_price[0][0];
-	    	control_price = delComma1(control_price);
-	    	control_price = Number(control_price);
+			//押されたボタンの単価を取得する
+			var at_piece = pushed + '3';
+			var line_price = $('.line').find('#' + at_piece);
+			//現在の数量を把握する
+	    	var amount = pushed + '6';
+	    	var amount = $('.line').find('#' + amount).html();
+	    	var amount = Number(amount);
+	    	//合計金額から加算・減算する金額の単価を取得する
+	    	var contorol_number = $(line_price).html();
+	    	contorol_number = new Array(contorol_number.split( '円' ));
+	    	contorol_number = contorol_number[0][0];
+	    	contorol_number = delComma1(contorol_number);
+	    	contorol_number = Number(contorol_number);
+			//現在の合計金額を取得する
+			sum = $('#sum').html();
+			sum_number = sum.slice(0);
+			sum_number = Number(delComma1(sum_number));
+
 		    if($(this).hasClass("btn-default")) {
 				$(button[i]).removeClass("btn-default");
 				$(button[i]).addClass("btn-primary");
-				sum = sum + control_price;
+				sum = sum_number + contorol_number * amount;
 				sum_comma = addFigure(sum);
 				$("#sum").text(sum_comma);
 			} else {
 				$(button[i]).removeClass("btn-primary");
 				$(button[i]).addClass("btn-default");
-				sum = sum - control_price;
+				sum = sum_number - contorol_number * amount;
 				sum_comma = addFigure(sum);
 				$("#sum").text(sum_comma);
 			}
@@ -104,17 +113,23 @@ $(document).ready(function(){
         var new_price = $(this).children('.active').children('span');
         var new_image = $(this).children('.product-image').children('img');
         var new_name = $(this).next('a');
+		//現在の合計金額
+		sum = $('#sum').html();
+		sum_number = sum.slice(0);
+		sum_number = Number(delComma1(sum_number));
+
         var category_sum = clicked_item + '7';
         var category_sum = $('.line').find('#' + category_sum);
     	//値段の表示を置き換える(new price)のclassを見つける
     	var target = clicked_item + '3';
     	var line_price = $('.line').find('#' + target);
-    	//引く金額を取得する
+    	//合計金額から引く金額を取得する
     	var subtraction = $(new_price).html();
     	subtraction = new Array(subtraction.split( '円' ));
     	subtraction = subtraction[0][0];
     	subtraction = delComma1(subtraction);
     	subtraction = Number(subtraction);
+
 		//現在の数量を把握する
     	var amount = clicked_item + '6';
     	var amount = $('.line').find('#' + amount).html();
@@ -155,8 +170,7 @@ $(document).ready(function(){
             	delete data['Modules'];
             	delete data['_container'];
             	//合計金額の書き替え
-		    	sum = sum + Number(data[click_count[clicked_item]]['Price']['_value']);
-		    	sum = sum - subtraction;
+		    	sum = sum_number + Number(data[click_count[clicked_item]]['Price']['_value']) * amount - subtraction * amount;
 				sum_comma = addFigure(sum);
 				$("#sum").text(sum_comma);
 				//jsonで引いてきた価格をカンマ付きの文字列にする
