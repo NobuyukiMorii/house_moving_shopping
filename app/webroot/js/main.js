@@ -158,7 +158,7 @@ $(document).ready(function(){
             	//これをhtmlを書き換える
             	$(new_price).html(price_comma);
             	$(new_image).attr("src",data[click_count[clicked_item]]['ExImage']['Url']);
-            	$(new_name).html(data[click_count[clicked_item]]['Name'] + "<br /><button type='button' class='btn btn-default'>購入する</button>");
+            	$(new_name).html(data[click_count[clicked_item]]['Name'] + "<br /><button type='button' class='btn btn-default'>購入する</button><span class='badge' style='font-size : 18pt'>売れ筋" + (click_count[clicked_item] + 1) + "位</span>");
             	$(new_name).attr("href",data[click_count[clicked_item]]['Url']);
 		    	$(line_price[0]).html(price_comma);
             });

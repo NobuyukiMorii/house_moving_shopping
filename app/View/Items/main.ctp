@@ -77,12 +77,12 @@
                             echo "<a href = '' class='change' id=".$key."2 >";
                             echo    "<div class='product menu-category' id=".$key.">";
                             echo        "<div class='menu-category-name list-group-item active'>
-                                            <button type='button' class='btn btn-default'>他の".$value['0']['Category']."を見る</button><span class='badge'>".number_format($value['0']['Price'])."円</span>";
+                                            <button type='button' class='btn btn-default'>他の".$value['0']['Category']."を見る</button><span class='badge' style='font-size : 18pt'>".number_format($value['0']['Price'])."円</span>";
                             echo        "</div>";
                             echo        "<div class='product-image'>";
                             echo            "<img class='product-image menu-item list-group-item' src=".$value['0']['ImageUrl'].">";
                             echo        "</div>";
-                            echo        "<a href=".$value['0']['Url']." class='menu-item list-group-item' target='_new'>".$value['0']['Name']."<br /><button type='button' class='btn btn-default'>購入する</button></a>";
+                            echo        "<a href=".$value['0']['Url']." class='menu-item list-group-item' target='_new'>".$value['0']['Name']."<br /><button type='button' class='btn btn-default'>購入する</button><span class='badge' style='font-size : 18pt'>売れ筋1位</span></a>";
                             echo    "</div>";
                             echo "</a>";
 
