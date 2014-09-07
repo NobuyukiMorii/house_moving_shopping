@@ -91,7 +91,9 @@
                 </div>
                 <div class="col-sm-4">
                     <table id="calculate" class="table">
+                        <h1><span id="total_sum">0</span>円</h1>
                         <tr><th>合計</th><th style='text-align: right'><span id="sum">0</span>円</th></tr>
+                        <tr><th>カテゴリー</th><th>単価</th><th>数量</th><th>小計</th></tr>
                         <?php foreach($data as $key => $value) {
 
                             echo "<tr class='line'>
@@ -103,8 +105,8 @@
                                 </button>
                                 <button type='button' class='btn btn-default btn-xs minus' id=".$key."5>
                                 <span class='glyphicon glyphicon-minus'></span></button>
+                                <span id=".$key."6>1</span>
                                 </td>
-                                <td id=".$key."6>1</td>
                                 <td class='category_sum' id=".$key."7 style='text-align: right'>".number_format($value['0']['Price'])."円</td>
                                </tr>";
                         }

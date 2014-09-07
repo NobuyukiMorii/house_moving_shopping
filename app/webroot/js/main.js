@@ -164,7 +164,6 @@ $(document).ready(function(){
 				//数量✖️単価を計算する
 				var category_sum_number = Number(data[click_count[clicked_item]]['Price']['_value']) * amount;
 				category_sum_number = addFigure(category_sum_number) + '円';
-				console.log	(category_sum_number);
             	//これをhtmlを書き換える
             	$(new_price).html(price_comma);
             	$(new_image).attr("src",data[click_count[clicked_item]]['ExImage']['Url']);
@@ -195,12 +194,20 @@ $(document).ready(function(){
     	piece_price_number = piece_price_number[0][0];
     	piece_price_number = delComma1(piece_price_number);
     	piece_price_number = Number(piece_price_number);
-    	//合計金額を計算する
+    	//小計を計算する
     	var category_sum_number = new_amount * piece_price_number;
     	category_sum_number = addFigure(category_sum_number) + '円';
-		//合計金額を書き換える
+		//小計を書き換える
 		var category_sum = category + '7';
 		var category_sum = $('.line').find('#' + category_sum).html(category_sum_number);
+		//合計金額を変える
+		sum = $('#sum').html();
+		sum_number = sum.slice(0);
+		sum_number = Number(delComma1(sum_number));
+		//更新後の合計金額を計算する
+		new_sum = sum_number + piece_price_number;
+		new_sum = addFigure(new_sum);
+		$('#sum').html(new_sum);	
 
 	});
 
@@ -226,12 +233,24 @@ $(document).ready(function(){
     	piece_price_number = piece_price_number[0][0];
     	piece_price_number = delComma1(piece_price_number);
     	piece_price_number = Number(piece_price_number);
-    	//合計金額を計算する
+    	//小計を計算する
     	var category_sum_number = new_amount * piece_price_number;
     	category_sum_number = addFigure(category_sum_number) + '円';
-		//合計金額を書き換える
+		//小計を書き換える
 		var category_sum = category + '7';
 		$('.line').find('#' + category_sum).html(category_sum_number);
+		//合計金額を変える
+		sum = $('#sum').html();
+		sum_number = sum.slice(0);
+		sum_number = Number(delComma1(sum_number));
+		//更新後の合計金額を計算する
+		if(amount >= 1) { 
+			new_sum = sum_number - piece_price_number;
+		} else {
+			new_sum = sum_number;
+		}
+		new_sum = addFigure(new_sum);
+		$('#sum').html(new_sum);	
 	});
 
 });
