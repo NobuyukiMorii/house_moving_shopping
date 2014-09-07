@@ -35,6 +35,11 @@
                 </a> 
             </div>
 
+            <div class="center-block text-center">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success"></div>
+                </div>
+            </div>
 
             <div class="container">
                 <div class="menu row">
@@ -79,7 +84,6 @@
                             ?>
                         </table>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -96,6 +100,7 @@
                 echo $js_url;
             }
             ;?>
+
         </script>
         <?php echo $this->Html->script('main.js');?>
         <?php echo $this->Html->script('bootstrap.min.js');?>

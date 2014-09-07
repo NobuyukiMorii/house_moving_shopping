@@ -1,9 +1,3 @@
-//合計金額を取得する
-var sum = $("#sum").html();
-sum = new Array(sum.split( '円' ));
-sum = sum[0][0];
-sum = Number(sum);
-
 //カンマ区切りにする関数
 function addFigure(str) {
 	var num = new String(str).replace(/,/g, "");
@@ -89,11 +83,6 @@ $(function(){
 	}
 
 });
-
-//①クリックされたアイテムを検知する（何がクリックされたか。テレビなのか洗濯機なのか）
-//②jsのオブジェクトの中から、クリックされたアイテムがキーのurlを選択する（どうする？？）
-//③上記のurlをセットして、ajax通信を始める
-//④成功したら、今表示しているアイテムのhtmlを書き換える（名前と値段とsrcの画像urlと商品名）
 
 $(document).ready(function(){
     $("a.change").click(function(e){
