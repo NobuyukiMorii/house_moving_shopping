@@ -104,8 +104,8 @@
                                 <button type='button' class='btn btn-default btn-xs minus' id=".$key."5>
                                 <span class='glyphicon glyphicon-minus'></span></button>
                                 </td>
-                                <td>1つ</td>
-                                <td class='xnum'>".number_format($value['0']['Price'])."円</td>
+                                <td id=".$key."6>1</td>
+                                <td class='category_sum' id=".$key."7 style='text-align: right'>".number_format($value['0']['Price'])."円</td>
                                </tr>";
                         }
                         ?>
