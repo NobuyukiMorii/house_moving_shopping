@@ -39,6 +39,7 @@ $(function(){
     	$(product[i]).css("display", "none");
     	$(line[i]).css("display", "none");
     }
+
 	//ボタンを押すと、対象のボタンの色が変わる
 	function change_button_color(i) {
 		$(button[i]).click(function(){
@@ -71,6 +72,50 @@ $(function(){
 			var percentage = Math.round(contorol_number / budget * 100);
 			percentage = percentage +'%';
 
+			//プログレスバーの色を変える
+			//必ずとなりと同じ色にならない。つまり、隣と同じ色であれば、違う色に変える。
+			//もし、となりと同じ色であれば、他の色にするというロジックを書く
+			//①そのためには、まず「隣の色を取得する」、、、となりって行っても、となりを取得できない、、、
+			//だとすると、回数による制御が考えられる。最初に押した時は青、次が赤、次が緑、
+			//それはどうやって所得するかというと、青になったタイミングを検知する。そうすると、カウントがあがって行く、それで、カウントの数に応じて、表示されるクラスが変わる
+			//①最初に色の変数を定義する（数字で）
+			//②クリックされた回数を記録しておく（同じ種類のボタンがクリックされた時はカウントアップしない）
+	        //同じボタンが２回以上押されているかを検知する
+
+        	//色の配列を定義する
+        	var bar_color = [
+        		'progress-bar progress-bar-success',
+        		'progress-bar progress-bar-warning',
+        		'progress-bar progress-bar-danger'
+        	];
+        	//ボタンがクリックされた回数
+	        if(typeof click_count === "undefined") {
+	        	click_count = 0;
+	        }
+	        //同じボタンがクリックされた回数
+	        if(typeof same_button_click_count === "undefined") {
+	        	same_button_click_count = [];
+	        }
+			if(typeof same_button_click_count[i] === "undefined") {
+	        	same_button_click_count[i] = 0;
+	        }
+        	same_button_click_count[i] = same_button_click_count[i] + 1;
+        	//同じボタンがクリックされた回数が1だったら、カウントを増やす
+        	if(same_button_click_count[i] === 1) {
+        		click_count = click_count + 1;
+        		//クラスを書き換える
+        		if(click_count % 3 === 0) {
+        			$(progress).addClass(bar_color[2]);
+        		} else if(click_count % 2 === 0) {
+        			$(progress).addClass(bar_color[1]);
+        		} else {
+        			$(progress).addClass(bar_color[0]);
+        		}
+        	}
+        	console.log(click_count);
+
+
+
 		    if($(this).hasClass("btn-default")) {
 		    	//ボタンの色を白から青に
 				$(button[i]).removeClass("btn-default");
@@ -81,7 +126,6 @@ $(function(){
 				$("#sum").text(sum_comma);
 				//プログレスバーのwidthを変更する
 				$(progress).width(percentage);
-
 			} else {
 				//ボタンの色を青から白に
 				$(button[i]).removeClass("btn-primary");

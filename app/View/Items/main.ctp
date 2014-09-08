@@ -36,7 +36,7 @@
             </div>
 
             <div class="center-block text-center">
-                <div class="progress">
+                <div class="progress" style="background-color:#ffffff;">
                     <?php 
                     foreach($data as $key => $value) {
                         $random[$key] = rand(0,9);
