@@ -9,6 +9,8 @@ function delComma1(w) {
     var z = w.replace(/,/g,"");
     return (z);
 }
+//プレグレスバーの最大値
+var budget = 200000;
 
 $(function(){
 	//ボタンのDOMを取得する
@@ -62,19 +64,34 @@ $(function(){
 			sum = $('#sum').html();
 			sum_number = sum.slice(0);
 			sum_number = Number(delComma1(sum_number));
+			//押されたボタンに対応するプログレスバーを取得する
+			var progress = pushed + '8';
+			progress = $('.progress').find('#' + progress);
+			//予算に体する金額を表示する
+			var percentage = Math.round(contorol_number / budget * 100);
+			percentage = percentage +'%';
 
 		    if($(this).hasClass("btn-default")) {
+		    	//ボタンの色を白から青に
 				$(button[i]).removeClass("btn-default");
 				$(button[i]).addClass("btn-primary");
+				//合計金額の変更
 				sum = sum_number + contorol_number * amount;
 				sum_comma = addFigure(sum);
 				$("#sum").text(sum_comma);
+				//プログレスバーのwidthを変更する
+				$(progress).width(percentage);
+
 			} else {
+				//ボタンの色を青から白に
 				$(button[i]).removeClass("btn-primary");
 				$(button[i]).addClass("btn-default");
+				//合計金額の変更
 				sum = sum_number - contorol_number * amount;
 				sum_comma = addFigure(sum);
 				$("#sum").text(sum_comma);
+				//プログレスバーのwidthを変更する
+				$(progress).width('0%');
 			}
 		});
 	}
@@ -113,11 +130,20 @@ $(document).ready(function(){
     	var target = clicked_item + '3';
     	var line_price = $('.line').find('#' + target);
     	//合計金額から引く金額を取得する
-    	var subtraction = $(new_price).html();
-    	subtraction = new Array(subtraction.split( '円' ));
-    	subtraction = subtraction[0][0];
-    	subtraction = delComma1(subtraction);
-    	subtraction = Number(subtraction);
+    	var contorol_number = $(new_price).html();
+    	contorol_number = new Array(contorol_number.split( '円' ));
+    	contorol_number = contorol_number[0][0];
+    	contorol_number = delComma1(contorol_number);
+    	contorol_number = Number(contorol_number);
+
+		//押されたボタンに対応するプログレスバーを取得する
+		var progress = clicked_item + '8';
+		progress = $('.progress').find('#' + progress);
+
+		//予算に体する金額を表示する
+		var percentage = Math.round(contorol_number / budget * 100);
+		percentage = percentage +'%';
+		console.log(percentage);
 
 		//現在の数量を把握する
     	var amount = clicked_item + '6';
@@ -159,7 +185,7 @@ $(document).ready(function(){
             	delete data['Modules'];
             	delete data['_container'];
             	//合計金額の書き替え
-		    	sum = sum_number + Number(data[click_count[clicked_item]]['Price']['_value']) * amount - subtraction * amount;
+		    	sum = sum_number + Number(data[click_count[clicked_item]]['Price']['_value']) * amount - contorol_number * amount;
 				sum_comma = addFigure(sum);
 				$("#sum").text(sum_comma);
 				//jsonで引いてきた価格をカンマ付きの文字列にする
@@ -174,6 +200,9 @@ $(document).ready(function(){
             	$(new_name).attr("href",data[click_count[clicked_item]]['Url']);
 		    	$(line_price[0]).html(price_comma);
 		    	$(category_sum).html(category_sum_number);
+		    	//プログレスバーの長さを変える
+		    	$(progress).width(percentage);
+
             });
 
         }
@@ -199,10 +228,18 @@ $(document).ready(function(){
     	piece_price_number = Number(piece_price_number);
     	//小計を計算する
     	var category_sum_number = new_amount * piece_price_number;
-    	category_sum_number = addFigure(category_sum_number) + '円';
+    	category_sum_text = addFigure(category_sum_number) + '円';
+
+		//押されたボタンに対応するプログレスバーを変更する
+		var progress = category + '8';
+		progress = $('.progress').find('#' + progress);
+		var percentage = Math.round(category_sum_number / budget * 100);
+		percentage = percentage +'%';
+		$(progress).width(percentage);
+
 		//小計を書き換える
 		var category_sum = category + '7';
-		var category_sum = $('.line').find('#' + category_sum).html(category_sum_number);
+		var category_sum = $('.line').find('#' + category_sum).html(category_sum_text);
 		//合計金額を変える
 		sum = $('#sum').html();
 		sum_number = sum.slice(0);
@@ -238,10 +275,18 @@ $(document).ready(function(){
     	piece_price_number = Number(piece_price_number);
     	//小計を計算する
     	var category_sum_number = new_amount * piece_price_number;
-    	category_sum_number = addFigure(category_sum_number) + '円';
+    	category_sum_text = addFigure(category_sum_number) + '円';
+
+		//押されたボタンに対応するプログレスバーを取得する
+		var progress = category + '8';
+		progress = $('.progress').find('#' + progress);
+		//予算に体する金額を表示する
+		var percentage = Math.round(category_sum_number / budget * 100);
+		percentage = percentage +'%';
+		$(progress).width(percentage);
 		//小計を書き換える
 		var category_sum = category + '7';
-		$('.line').find('#' + category_sum).html(category_sum_number);
+		$('.line').find('#' + category_sum).html(category_sum_text);
 		//合計金額を変える
 		sum = $('#sum').html();
 		sum_number = sum.slice(0);

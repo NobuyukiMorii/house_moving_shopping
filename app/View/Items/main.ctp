@@ -72,7 +72,7 @@
                                 $data[$key][$i]['class'] = 'progress-bar progress-bar-danger';
                             }
                         }
-                        echo"<div class=".$data[$key][0]['class']." style='width: 0%' id=".$data[$key][0]."8>
+                        echo"<div class=".$data[$key][0]['class']." style='width: 0%' id=".$key."8>
                             <span class='sr-only'>".$data[$key][0]['Category']."</span></div>";                    
                     }
                     ;?>
