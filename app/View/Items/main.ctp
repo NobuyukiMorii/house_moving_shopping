@@ -35,9 +35,47 @@
                 </a> 
             </div>
 
+
+                    <?php 
+                    foreach($data as $key => $value) {
+                        for($i = 0; $i<count($data); $i++) {
+                            if($i%5 === 0 || $i===5){
+                                $data[$key][$i]['class'] = 'progress-bar';
+                            } elseif($i%5 === 1 || $i===1){
+                                $data[$key][$i]['class'] = 'progress-bar progress-bar-success';
+                            } elseif($i%5 === 2 || $i===2){
+                                $data[$key][$i]['class'] = 'progress-bar progress-bar-info';
+                            } elseif($i%5 === 3 || $i===3){
+                                $data[$key][$i]['class'] = 'progress-bar progress-bar-warning';
+                            } elseif($i%5 === 4 || $i===4){
+                                $data[$key][$i]['class'] = 'progress-bar progress-bar-danger';
+                            }
+                        } 
+                    }
+                    ;?>
+ 
             <div class="center-block text-center">
                 <div class="progress">
-                    <div class="progress-bar progress-bar-success"></div>
+                    <?php 
+                    foreach($data as $key => $value) {
+                        for($i = 0; $i<count($data); $i++) {
+                            $random[$i] = rand(0,4);
+                            if($random[$i] === 0){
+                                $data[$key][$i]['class'] = 'progress-bar';
+                            } elseif($random[$i] === 1){
+                                $data[$key][$i]['class'] = 'progress-bar progress-bar-success';
+                            } elseif($random[$i] === 2){
+                                $data[$key][$i]['class'] = 'progress-bar progress-bar-info';
+                            } elseif($random[$i] === 3){
+                                $data[$key][$i]['class'] = 'progress-bar progress-bar-warning';
+                            } elseif($random[$i] === 4){
+                                $data[$key][$i]['class'] = 'progress-bar progress-bar-danger';
+                            }
+                        }
+                        echo"<div class=".$data[$key][0]['class']." style='width: 0%' id=".$data[$key][0]."8>
+                            <span class='sr-only'>".$data[$key][0]['Category']."</span></div>";                    
+                    }
+                    ;?>
                 </div>
             </div>
 
