@@ -140,11 +140,6 @@ $(document).ready(function(){
 		var progress = clicked_item + '8';
 		progress = $('.progress').find('#' + progress);
 
-		//予算に体する金額を表示する
-		var percentage = Math.round(contorol_number / budget * 100);
-		percentage = percentage +'%';
-		console.log(percentage);
-
 		//現在の数量を把握する
     	var amount = clicked_item + '6';
     	var amount = $('.line').find('#' + amount).html();
@@ -192,14 +187,18 @@ $(document).ready(function(){
 				price_comma = addFigure(data[click_count[clicked_item]]['Price']['_value']) + '円';
 				//数量✖️単価を計算する
 				var category_sum_number = Number(data[click_count[clicked_item]]['Price']['_value']) * amount;
-				category_sum_number = addFigure(category_sum_number) + '円';
+				category_sum_text = addFigure(category_sum_number) + '円';
+				//予算に体する金額を表示する
+				var percentage = Math.round(category_sum_number / budget * 100);
+				percentage = percentage +'%';
+				console.log(percentage);
             	//これをhtmlを書き換える
             	$(new_price).html(price_comma);
             	$(new_image).attr("src",data[click_count[clicked_item]]['ExImage']['Url']);
             	$(new_name).html(data[click_count[clicked_item]]['Name'] + "<br /><button type='button' class='btn btn-default'>購入する</button><span class='badge' style='font-size : 18pt'>売れ筋" + (click_count[clicked_item] + 1) + "位</span>");
             	$(new_name).attr("href",data[click_count[clicked_item]]['Url']);
 		    	$(line_price[0]).html(price_comma);
-		    	$(category_sum).html(category_sum_number);
+		    	$(category_sum).html(category_sum_text);
 		    	//プログレスバーの長さを変える
 		    	$(progress).width(percentage);
 

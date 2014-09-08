@@ -35,59 +35,33 @@
                 </a> 
             </div>
 
-
-                    <?php 
-                    foreach($data as $key => $value) {
-                        for($i = 0; $i<count($data); $i++) {
-                            if($i%5 === 0 || $i===5){
-                                $data[$key][$i]['class'] = 'progress-bar';
-                            } elseif($i%5 === 1 || $i===1){
-                                $data[$key][$i]['class'] = 'progress-bar progress-bar-success';
-                            } elseif($i%5 === 2 || $i===2){
-                                $data[$key][$i]['class'] = 'progress-bar progress-bar-info';
-                            } elseif($i%5 === 3 || $i===3){
-                                $data[$key][$i]['class'] = 'progress-bar progress-bar-warning';
-                            } elseif($i%5 === 4 || $i===4){
-                                $data[$key][$i]['class'] = 'progress-bar progress-bar-danger';
-                            }
-                        } 
-                    }
-                    ;?>
-            <?php 
-            foreach($data as $key => $value) {
-                var_dump($data[$key]);
-                var_dump(count($data[$key]));
-            }
-            ;?>
             <div class="center-block text-center">
                 <div class="progress">
                     <?php 
                     foreach($data as $key => $value) {
-                        for($i = 0; $i<count($data[$key]); $i++) {
-                            $random[$i] = rand(0,9);
-                            if($random[$i] === 0){
-                                $data[$key][$i]['class'] = 'progress-bar';
-                            } elseif($random[$i] === 1){
-                                $data[$key][$i]['class'] = 'progress-bar progress-bar-success';
-                            } elseif($random[$i] === 2){
-                                $data[$key][$i]['class'] = 'progress-bar progress-bar-info';
-                            } elseif($random[$i] === 3){
-                                $data[$key][$i]['class'] = 'progress-bar progress-bar-warning';
-                            } elseif($random[$i] === 4){
-                                $data[$key][$i]['class'] = 'progress-bar progress-bar-danger';
-                            } elseif($random[$i] === 5){
-                                $data[$key][$i]['class'] = 'progress-bar progress-bar-success progress-bar-striped';
-                            } elseif($random[$i] === 6){
-                                $data[$key][$i]['class'] = 'progress-bar progress-bar-info progress-bar-striped';
-                            } elseif($random[$i] === 7){
-                                $data[$key][$i]['class'] = 'progress-bar progress-bar-warning progress-bar-striped';
-                            } elseif($random[$i] === 8){
-                                $data[$key][$i]['class'] = 'progress-bar progress-bar-danger progress-bar-striped';
-                            } elseif($random[$i] === 9){
-                                $data[$key][$i]['class'] = 'progress-bar progress-bar-striped';
-                            }
+                        $random[$key] = rand(0,9);
+                        if($random[$key] === 0){
+                            $data[$key][0]['class'] = 'progress-bar';
+                        } elseif($random[$key] === 1){
+                            $data[$key][0]['class'] = 'progress-bar progress-bar-success';
+                        } elseif($random[$key] === 2){
+                            $data[$key][0]['class'] = 'progress-bar progress-bar-info';
+                        } elseif($random[$key] === 3){
+                            $data[$key][0]['class'] = 'progress-bar progress-bar-warning';
+                        } elseif($random[$key] === 4){
+                            $data[$key][0]['class'] = 'progress-bar progress-bar-danger';
+                        } elseif($random[$key] === 5){
+                            $data[$key][0]['class'] = 'progress-bar progress-bar-success progress-bar-striped';
+                        } elseif($random[$key] === 6){
+                            $data[$key][0]['class'] = 'progress-bar progress-bar-info progress-bar-striped';
+                        } elseif($random[$key] === 7){
+                            $data[$key][0]['class'] = 'progress-bar progress-bar-warning progress-bar-striped';
+                        } elseif($random[$key] === 8){
+                            $data[$key][0]['class'] = 'progress-bar progress-bar-danger progress-bar-striped';
+                        } elseif($random[$key] === 9){
+                            $data[$key][0]['class'] = 'progress-bar progress-bar-striped';
                         }
-                        echo"<div class='".$data[$key][0]['class']."' style='width: 0%' id=".$key."8>".$data[$key][0]['Category']."</div>";                    
+                        echo"<div class='".$data[$key][0]['class']."' style='width: 0%' id=".$key."8>".$data[$key][0]['Category']."</div>";
                     }
                     ;?>
                 </div>
