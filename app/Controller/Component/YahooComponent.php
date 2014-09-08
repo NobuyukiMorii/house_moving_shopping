@@ -4,7 +4,7 @@ class YahooComponent extends Component {
 
     //カテゴリーIDを取得するURLを作成する（後で削除する）
     public function get_category_id_url() {
-        $category_id_url = "http://shopping.yahooapis.jp/ShoppingWebService/V1/categorySearch?appid=dj0zaiZpPXdENWwzazJwWDVhcSZzPWNvbnN1bWVyc2VjcmV0Jng9Mzc-&category_id=1";
+        $category_id_url = "http://shopping.yahooapis.jp/ShoppingWebService/V1/categorySearch?appid=dj0zaiZpPXdENWwzazJwWDVhcSZzPWNvbnN1bWVyc2VjcmV0Jng9Mzc-";
         return $category_id_url; 
     }
 
@@ -15,7 +15,7 @@ class YahooComponent extends Component {
         $url['image_size'] = '300';
         $url['sort'] = '%2Bsold';
         $url['availability'] = '1';
-        $url['hit'] = $hit;
+        $url['hits'] = $hit;
         return $url;
     }
 
@@ -142,7 +142,7 @@ class YahooComponent extends Component {
             $parameter_url[$key] = '';
             foreach ($value as $key2 => $value2) {
                 if($value2 === reset($value)) {
-                    $parameter_url[$key] = $key2.'='.$value2;
+                    $parameter_url[$key] = '&'.$key2.'='.$value2;
                     continue;
                 }
                 $parameter_url[$key] = $parameter_url[$key].'&'.$key2.'='.$value2;

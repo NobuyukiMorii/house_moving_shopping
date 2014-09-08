@@ -53,13 +53,18 @@
                         } 
                     }
                     ;?>
- 
+            <?php 
+            foreach($data as $key => $value) {
+                var_dump($data[$key]);
+                var_dump(count($data[$key]));
+            }
+            ;?>
             <div class="center-block text-center">
                 <div class="progress">
                     <?php 
                     foreach($data as $key => $value) {
-                        for($i = 0; $i<count($data); $i++) {
-                            $random[$i] = rand(0,4);
+                        for($i = 0; $i<count($data[$key]); $i++) {
+                            $random[$i] = rand(0,9);
                             if($random[$i] === 0){
                                 $data[$key][$i]['class'] = 'progress-bar';
                             } elseif($random[$i] === 1){
@@ -70,10 +75,19 @@
                                 $data[$key][$i]['class'] = 'progress-bar progress-bar-warning';
                             } elseif($random[$i] === 4){
                                 $data[$key][$i]['class'] = 'progress-bar progress-bar-danger';
+                            } elseif($random[$i] === 5){
+                                $data[$key][$i]['class'] = 'progress-bar progress-bar-success progress-bar-striped';
+                            } elseif($random[$i] === 6){
+                                $data[$key][$i]['class'] = 'progress-bar progress-bar-info progress-bar-striped';
+                            } elseif($random[$i] === 7){
+                                $data[$key][$i]['class'] = 'progress-bar progress-bar-warning progress-bar-striped';
+                            } elseif($random[$i] === 8){
+                                $data[$key][$i]['class'] = 'progress-bar progress-bar-danger progress-bar-striped';
+                            } elseif($random[$i] === 9){
+                                $data[$key][$i]['class'] = 'progress-bar progress-bar-striped';
                             }
                         }
-                        echo"<div class=".$data[$key][0]['class']." style='width: 0%' id=".$key."8>
-                            <span class='sr-only'>".$data[$key][0]['Category']."</span></div>";                    
+                        echo"<div class='".$data[$key][0]['class']."' style='width: 0%' id=".$key."8>".$data[$key][0]['Category']."</div>";                    
                     }
                     ;?>
                 </div>
