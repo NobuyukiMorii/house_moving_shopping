@@ -38,28 +38,19 @@
             <div class="center-block text-center">
                 <div class="progress" style="background-color:#ffffff;">
                     <?php 
+                    $i = 0;
                     foreach($data as $key => $value) {
-                        $random[$key] = rand(0,9);
-                        if($random[$key] === 0){
-                            $data[$key][0]['class'] = 'progress-bar';
-                        } elseif($random[$key] === 1){
+                        $i++;
+                        if($i % 5 === 0) {
                             $data[$key][0]['class'] = 'progress-bar progress-bar-success';
-                        } elseif($random[$key] === 2){
+                        } elseif($i % 4 === 0) {
                             $data[$key][0]['class'] = 'progress-bar progress-bar-info';
-                        } elseif($random[$key] === 3){
+                        } elseif($i % 3 === 0) {
                             $data[$key][0]['class'] = 'progress-bar progress-bar-warning';
-                        } elseif($random[$key] === 4){
+                        } elseif($i % 2 === 0) {
                             $data[$key][0]['class'] = 'progress-bar progress-bar-danger';
-                        } elseif($random[$key] === 5){
-                            $data[$key][0]['class'] = 'progress-bar progress-bar-success progress-bar-striped';
-                        } elseif($random[$key] === 6){
-                            $data[$key][0]['class'] = 'progress-bar progress-bar-info progress-bar-striped';
-                        } elseif($random[$key] === 7){
-                            $data[$key][0]['class'] = 'progress-bar progress-bar-warning progress-bar-striped';
-                        } elseif($random[$key] === 8){
-                            $data[$key][0]['class'] = 'progress-bar progress-bar-danger progress-bar-striped';
-                        } elseif($random[$key] === 9){
-                            $data[$key][0]['class'] = 'progress-bar progress-bar-striped';
+                        } else {
+                            $data[$key][0]['class'] = 'progress-bar';
                         }
                         echo"<div class='".$data[$key][0]['class']."' style='width: 0%' id=".$key."8>".$data[$key][0]['Category']."</div>";
                     }
