@@ -82,6 +82,34 @@ $(function(){
 				$("#sum").text(sum_comma);
 				//プログレスバーのwidthを変更する
 				$(progress).width(percentage);
+				//合計が予算を超えたとき
+				if(sum > budget) {
+					//青色のボタンを取得する
+					var primary_buttons = [];
+					primary_buttons = $('.btn-primary');	
+					var primary_buttons_id = [];
+					var line_rate = [] ;
+					var change_width_bars =[];
+					for(var num=0; num<primary_buttons.length; num++){
+						//idから表示されているカテゴリーを取得する
+						primary_buttons_id[num] = $(primary_buttons[num]).attr('id');
+						primary_buttons_id[num]= primary_buttons_id[num].slice(0, -7);
+						//表示されている見積もり表の小計を取得する
+						line_rate[num] = primary_buttons_id[num] + '7';
+						line_rate[num] = $('.line').find('#' + line_rate[num]).html();
+				    	line_rate[num]  = new Array(line_rate[num] .split( '円' ));
+				    	line_rate[num]  = line_rate[num][0][0];
+				    	line_rate[num]  = delComma1(line_rate[num]);
+				    	line_rate[num]  = Number(line_rate[num]);
+				    	line_rate[num]  = line_rate[num] / sum * 100;
+				    	line_rate[num]  = line_rate[num] + '%';
+				    	//対象のプログレスバーを取得する
+						change_width_bars[num] = primary_buttons_id[num] + '8';
+						change_width_bars[num] = $('.progress').find('#' + change_width_bars[num]);
+						//プログレスバーの長さを変更する
+						$(change_width_bars[num]).width(line_rate[num]);
+					}
+				}
 			} else {
 				//ボタンの色を青から白に
 				$(button[i]).removeClass("btn-primary");
@@ -92,6 +120,7 @@ $(function(){
 				$("#sum").text(sum_comma);
 				//プログレスバーのwidthを変更する
 				$(progress).width('0%');
+
 			}
 		});
 	}
@@ -201,7 +230,34 @@ $(document).ready(function(){
 		    	$(category_sum).html(category_sum_text);
 		    	//プログレスバーの長さを変える
 		    	$(progress).width(percentage);
-
+				//合計が予算を超えたとき
+				if(sum > budget) {
+					//青色のボタンを取得する
+					var primary_buttons = [];
+					primary_buttons = $('.btn-primary');	
+					var primary_buttons_id = [];
+					var line_rate = [] ;
+					var change_width_bars =[];
+					for(var num=0; num<primary_buttons.length; num++){
+						//idから表示されているカテゴリーを取得する
+						primary_buttons_id[num] = $(primary_buttons[num]).attr('id');
+						primary_buttons_id[num]= primary_buttons_id[num].slice(0, -7);
+						//表示されている見積もり表の小計を取得する
+						line_rate[num] = primary_buttons_id[num] + '7';
+						line_rate[num] = $('.line').find('#' + line_rate[num]).html();
+				    	line_rate[num]  = new Array(line_rate[num] .split( '円' ));
+				    	line_rate[num]  = line_rate[num][0][0];
+				    	line_rate[num]  = delComma1(line_rate[num]);
+				    	line_rate[num]  = Number(line_rate[num]);
+				    	line_rate[num]  = line_rate[num] / sum * 100;
+				    	line_rate[num]  = line_rate[num] + '%';
+				    	//対象のプログレスバーを取得する
+						change_width_bars[num] = primary_buttons_id[num] + '8';
+						change_width_bars[num] = $('.progress').find('#' + change_width_bars[num]);
+						//プログレスバーの長さを変更する
+						$(change_width_bars[num]).width(line_rate[num]);
+					}
+				}
             });
 
         }
@@ -245,9 +301,36 @@ $(document).ready(function(){
 		sum_number = Number(delComma1(sum_number));
 		//更新後の合計金額を計算する
 		new_sum = sum_number + piece_price_number;
-		new_sum = addFigure(new_sum);
-		$('#sum').html(new_sum);	
-
+		new_sum_text = addFigure(new_sum);
+		$('#sum').html(new_sum_text);
+		//合計が予算を超えたとき
+		if(new_sum > budget) {
+			//青色のボタンを取得する
+			var primary_buttons = [];
+			primary_buttons = $('.btn-primary');	
+			var primary_buttons_id = [];
+			var line_rate = [] ;
+			var change_width_bars =[];
+			for(var num=0; num<primary_buttons.length; num++){
+				//idから表示されているカテゴリーを取得する
+				primary_buttons_id[num] = $(primary_buttons[num]).attr('id');
+				primary_buttons_id[num]= primary_buttons_id[num].slice(0, -7);
+				//表示されている見積もり表の小計を取得する
+				line_rate[num] = primary_buttons_id[num] + '7';
+				line_rate[num] = $('.line').find('#' + line_rate[num]).html();
+		    	line_rate[num]  = new Array(line_rate[num] .split( '円' ));
+		    	line_rate[num]  = line_rate[num][0][0];
+		    	line_rate[num]  = delComma1(line_rate[num]);
+		    	line_rate[num]  = Number(line_rate[num]);
+		    	line_rate[num]  = line_rate[num] / new_sum * 100;
+		    	line_rate[num]  = line_rate[num] + '%';
+		    	//対象のプログレスバーを取得する
+				change_width_bars[num] = primary_buttons_id[num] + '8';
+				change_width_bars[num] = $('.progress').find('#' + change_width_bars[num]);
+				//プログレスバーの長さを変更する
+				$(change_width_bars[num]).width(line_rate[num]);
+			}
+		}
 	});
 
 	$(".minus").click(function(e){
