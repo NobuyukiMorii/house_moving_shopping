@@ -23,6 +23,18 @@
                 </ol>
             </div>
 
+            <select name="budget" class="form-control">
+                <?php
+                for($i=10000; $i<=1000000; $i = $i +10000) {
+                    if($i === 200000){
+                        echo "<option selected='selected'>".number_format($i)."円</option>";
+                    } else {
+                        echo "<option>".number_format($i)."円</option>";
+                    }
+                }
+                ;?>
+            </select>
+
             <div class="center-block text-left" id="button">
             <?php foreach($data as $key => $value) {
                 echo "<button type='button' id=".$key."_button class='btn btn-default' style='margin : 3px; width : 100px';>".$value['0']['Category']."</button>";
@@ -80,8 +92,9 @@
                     </div>
                     <div class="col-sm-4">
                         <table id="calculate" class="table">
+                            <h1 style='text-align: right'>予算：<span id="budget"></span></h1>
                             <h1 style='text-align: right'>合計：<span id="sum">0</span>円</h1>
-                            <tr><th>カテゴリー</th><th>単価</th><th>数量</th><th>小計</th></tr>
+                            <tr id='table_header'><th>カテゴリー</th><th>単価</th><th>数量</th><th>小計</th></tr>
                             <?php foreach($data as $key => $value) {
 
                                 echo "<tr class='line'>

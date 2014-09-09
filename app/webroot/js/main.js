@@ -1,3 +1,7 @@
+//table_headerを非表示にする
+var table_header = $('#table_header');
+$(table_header).css("display", "none");
+
 //カンマ区切りにする関数
 function addFigure(str) {
 	var num = new String(str).replace(/,/g, "");
@@ -11,6 +15,59 @@ function delComma1(w) {
 }
 //プレグレスバーの最大値
 var budget = 200000;
+
+$("select").change(function () {
+  	var str = "";
+  	$("select option:selected").each(function () {
+        str += $(this).text() + " ";
+  	});
+  	budget = $("#budget").text(str);
+  	budget = $("#budget").text(str).html();
+	budget = new Array(budget.split( '円' ));
+	budget = budget[0][0];
+	budget = delComma1(budget);
+	budget = Number(budget);
+	console.log(budget);
+
+	//青色のボタンを取得する
+	var primary_buttons = [];
+	primary_buttons = $('.btn-primary');	
+	var primary_buttons_id = [];
+	var line_rate = [] ;
+	var change_width_bars =[];
+	for(var num=0; num<primary_buttons.length; num++){
+		//idから表示されているカテゴリーを取得する
+		primary_buttons_id[num] = $(primary_buttons[num]).attr('id');
+		primary_buttons_id[num] = primary_buttons_id[num].slice(0, -7);
+		//現在の合計金額
+		sum_ = $('#sum').html();
+		sum_ = sum_.slice(0);
+		sum_ = Number(delComma1(sum_));
+		//表示されている見積もり表の小計を取得する
+		line_rate[num] = primary_buttons_id[num] + '7';
+		line_rate[num] = $('.line').find('#' + line_rate[num]).html();
+    	line_rate[num]  = new Array(line_rate[num] .split( '円' ));
+    	line_rate[num]  = line_rate[num][0][0];
+    	line_rate[num]  = delComma1(line_rate[num]);
+    	line_rate[num]  = Number(line_rate[num]);
+    	//バーのパーセンテージを計算する
+    	if(sum_ >= budget) {
+			//ゆらす
+			$.yure($('.progress'));
+    		line_rate[num]  = line_rate[num] / sum_ * 100;
+    	} else {
+    		line_rate[num]  = line_rate[num] / budget * 100;
+    	}
+    	line_rate[num]  = line_rate[num] + '%';
+    	//対象のプログレスバーを取得する
+		change_width_bars[num] = primary_buttons_id[num] + '8';
+		change_width_bars[num] = $('.progress').find('#' + change_width_bars[num]);
+		//プログレスバーの長さを変更する
+		$(change_width_bars[num]).width(line_rate[num]);
+	}
+	
+}).change();
+
 
 $(function(){
 	//ボタンのDOMを取得する
@@ -80,6 +137,12 @@ $(function(){
 				sum = sum_number + contorol_number * amount;
 				sum_comma = addFigure(sum);
 				$("#sum").text(sum_comma);
+				//テーブルヘッダーの表示非表示
+				if(sum>0) {
+					$(table_header).show();
+				} else {
+					$(table_header).css("display", "none");
+				}
 				//プログレスバーのwidthを変更する
 				$(progress).width(percentage);
 				//合計が予算を超えたとき
@@ -121,6 +184,12 @@ $(function(){
 				sum = sum_number - contorol_number * amount;
 				sum_comma = addFigure(sum);
 				$("#sum").text(sum_comma);
+				//テーブルヘッダーを表示する
+				if(sum>0) {
+					$(table_header).show();
+				} else {
+					$(table_header).css("display", "none");
+				}
 				//プログレスバーのwidthを変更する
 				$(progress).width('0%');
 				//合計が予算を超えたとき
@@ -250,7 +319,6 @@ $(document).ready(function(){
 				//予算に体する金額を表示する
 				var percentage = Math.round(category_sum_number / budget * 100);
 				percentage = percentage +'%';
-				console.log(percentage);
             	//これをhtmlを書き換える
             	$(new_price).html(price_comma);
             	$(new_image).attr("src",data[click_count[clicked_item]]['ExImage']['Url']);
