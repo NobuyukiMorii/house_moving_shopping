@@ -119,6 +119,7 @@
             ;?>
 
         </script>
+        <?php echo $this->Html->script('yure.js');?>
         <?php echo $this->Html->script('main.js');?>
         <?php echo $this->Html->script('bootstrap.min.js');?>
 	</body>
