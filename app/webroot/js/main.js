@@ -1,6 +1,12 @@
-//table_headerを非表示にする
+//table_headerの表示・非表示
 var table_header = $('#table_header');
 $(table_header).css("display", "none");
+//amount_discriptionの表示・非表示
+var amount_discription = $('#amount_discription');
+$(amount_discription).css("display", "none");
+//clearの表示・非表示
+var clear_display_button = $('#clear');
+$(clear_display_button).css("display", "none");
 
 //カンマ区切りにする関数
 function addFigure(str) {
@@ -136,8 +142,12 @@ $(function(){
 				//テーブルヘッダーの表示非表示
 				if(sum>0) {
 					$(table_header).show();
+					$(amount_discription).show();
+					$(clear_display_button).show();
 				} else {
 					$(table_header).css("display", "none");
+					$(amount_discription).css("display", "none");
+					$(clear_display_button).css("display", "none");
 				}
 				//プログレスバーのwidthを変更する
 				$(progress).width(percentage);
@@ -183,8 +193,13 @@ $(function(){
 				//テーブルヘッダーを表示する
 				if(sum>0) {
 					$(table_header).show();
+					$(amount_discription).show();
+					$(clear_display_button).show();
+					
 				} else {
 					$(table_header).css("display", "none");
+					$(amount_discription).css("display", "none");
+					$(clear_display_button).css("display", "none");
 				}
 				//プログレスバーのwidthを変更する
 				$(progress).width('0%');

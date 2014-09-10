@@ -5,14 +5,14 @@
 		<meta charset="utf-8">
 		<title>みつくろい</title>
 		<meta name="generator" content="Bootply" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=3, maximum-scale=1">
         <?php echo $this->Html->css('bootstrap.min.css');?>
         <?php echo $this->Html->css('styles.css');?>
 		<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 	</head>
 	<body>
     <!--tMain-->
-        <div class="col-sm-12">
+        <div class="col-sm-9">
             <div class="progress">
                 <?php 
                 $i = 0;
@@ -33,7 +33,9 @@
                 }
                 ;?>
             </div>
-                <p style='text-align: right'>合計：<span id="sum">0</span>円</p>
+        </div>
+        <div class="col-sm-3">
+            <h4 class='margin_top_zero' style='text-align: left'><span id="sum_percentage"></span><span id="sum">0</span>円</h4>
         </div>
 
         <div class="col-sm-9">
@@ -56,30 +58,42 @@
         </div>
 
         <div class="col-sm-3">
-            <div class="text-left">
-                <select name="budget" class="form-control">
-                    <?php
-                    for($i=10000; $i<=1000000; $i = $i +10000) {
-                        if($i === 200000){
-                            echo "<option selected='selected'>".number_format($i)."円</option>";
-                        } else {
-                            echo "<option>".number_format($i)."円</option>";
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3 class="panel-title">引っ越しの予算を選択して下さい</h3></div>
+                <div class="panel-body">
+                    <div class="text-left">
+                        <select name="budget" class="form-control">
+                            <?php
+                            for($i=10000; $i<=1000000; $i = $i +10000) {
+                                if($i === 200000){
+                                    echo "<option selected='selected'>".number_format($i)."円</option>";
+                                } else {
+                                    echo "<option>".number_format($i)."円</option>";
+                                }
+                            }
+                            ;?>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3 class="panel-title">引っ越しに必要なものを選択して下さい</h3></div>                
+                <div class="panel-body">
+
+                    <div class="text-left" id="button">
+                        <?php foreach($data as $key => $value) {
+                            echo "<button type='button' id=".$key."_button class='btn btn-default' style='margin : 3px; width : 100px';>".$value['0']['Category']."</button>";
                         }
-                    }
-                    ;?>
-                </select>
+                        ?>
+                    </div>
+                </div>
             </div>
-            <div class="text-left" id="button">
-                <?php foreach($data as $key => $value) {
-                    echo "<button type='button' id=".$key."_button class='btn btn-default' style='margin : 3px; width : 100px';>".$value['0']['Category']."</button>";
-                }
-                ?>
-                <a href=javascript:location.reload()>
-                    <button type='button' id="clear" class='btn btn-info' style='margin : 3px; width : 100px';>クリア</button> 
-                </a> 
-            </div>
-            <div>
-                <table id="calculate" class="table">
+
+            <div class="panel panel-default" id='amount_discription'>
+                <div class="panel-heading"><h3 class="panel-title">数量を変更して下さい</h3></div>   
+                <div class="panel-body">
+                <table class="table table-bordered">
                     <tr id='table_header'><th>カテゴリー</th><th>単価</th><th>数量</th><th>小計</th></tr>
                     <?php foreach($data as $key => $value) {
 
@@ -92,13 +106,19 @@
                             </button>
                             <button type='button' class='btn btn-default btn-xs minus' id=".$key."5>
                             <span class='glyphicon glyphicon-minus'></span></button>
-                            <span id=".$key."6>1</span>
+                            <span id=".$key."6> 1</span>
                             </td>
                             <td class='category_sum' id=".$key."7 style='text-align: right'>".number_format($value['0']['Price'])."円</td>
                            </tr>";
                     }
                     ?>
                 </table>
+                </div>
+            </div>
+            <div class="text-right">
+                <a href=javascript:location.reload()>
+                    <button type='button' id="clear" class='btn btn-info' style='margin : 3px; width : 100px';>クリア</button> 
+                </a> 
             </div>
         </div>     
 
