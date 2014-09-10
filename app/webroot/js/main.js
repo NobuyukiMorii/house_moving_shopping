@@ -17,17 +17,13 @@ function delComma1(w) {
 var budget = 200000;
 
 $("select").change(function () {
-  	var str = "";
-  	$("select option:selected").each(function () {
-        str += $(this).text() + " ";
-  	});
-  	budget = $("#budget").text(str);
-  	budget = $("#budget").text(str).html();
+
+  	budget = $(this).val();
+  	console.log(budget);
 	budget = new Array(budget.split( '円' ));
 	budget = budget[0][0];
 	budget = delComma1(budget);
 	budget = Number(budget);
-	console.log(budget);
 
 	//青色のボタンを取得する
 	var primary_buttons = [];
