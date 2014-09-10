@@ -29,13 +29,25 @@
                     } else {
                         $data[$key][0]['class'] = 'progress-bar';
                     }
-                    echo"<div class='".$data[$key][0]['class']."' style='width: 0%' id=".$key."8>".$data[$key][0]['Category']."</div>";
+                    echo"<div class='".$data[$key][0]['class']."' style='width: 0%;' id=".$key."8>".$data[$key][0]['Category']."<span id='piece_percentage'></span></div>";
                 }
                 ;?>
             </div>
         </div>
         <div class="col-sm-3">
-            <h4 class='margin_top_zero' style='text-align: left'><span id="sum_percentage"></span><span id="sum">0</span>円</h4>
+        <div class="col-sm-4">
+            <h4 class='margin_top_zero' style='text-align: left'><span id="sum_percentage"></span></h4>
+        </div>
+        <div class="col-sm-4">
+            <h4 class='margin_top_zero' style='text-align: left'><span id="sum">0</span>円</h4>
+        </div>
+        <div class="col-sm-4">
+            <div class="text-right">
+                <a href=javascript:location.reload()>
+                    <button type='button' id="clear" class='btn btn-info' style='margin : 3px; width : 100px';>クリア</button> 
+                </a> 
+            </div>
+        </div>
         </div>
 
         <div class="col-sm-9">
@@ -43,8 +55,8 @@
                 <?php foreach($data as $key => $value) {
                     echo "<a href = '' class='change' id=".$key."2 >";
                     echo    "<div class='product menu-category' id=".$key.">";
-                    echo        "<div class='menu-category-name list-group-item active'>
-                                    <button type='button' class='btn btn-default'>他の".$value['0']['Category']."を見る</button><span class='badge' style='font-size : 18pt'>".number_format($value['0']['Price'])."円</span>";
+                    echo        "<div class='menu-category-name list-group-item active' style='background-color:#ffffff; border-color:#ddd;'>
+                                    <button type='button' class='btn btn-default'>他の".$value['0']['Category']."を見る</button><span class='badge' style='font-size : 10pt'>".number_format($value['0']['Price'])."円</span>";
                     echo        "</div>";
                     echo        "<div class='product-image'>";
                     echo            "<img class='product-image menu-item list-group-item' src=".$value['0']['ImageUrl'].">";
@@ -114,11 +126,6 @@
                     ?>
                 </table>
                 </div>
-            </div>
-            <div class="text-right">
-                <a href=javascript:location.reload()>
-                    <button type='button' id="clear" class='btn btn-info' style='margin : 3px; width : 100px';>クリア</button> 
-                </a> 
             </div>
         </div>     
 
