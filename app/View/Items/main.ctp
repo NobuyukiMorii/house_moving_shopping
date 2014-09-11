@@ -37,18 +37,18 @@
         </div>
 
         <div class="col-sm-9">
-            <div class="productsrow" style="height : 2000px">
+            <div class="productsrow" style="float:right;">
                 <?php foreach($data as $key => $value) {
-                    echo "<div class='left'>";
+                    echo "<div>";
                     echo "<a href = '' class='change' id=".$key."2 >";
                     echo    "<div class='product menu-category' id=".$key.">";
                     echo        "<div class='menu-category-name list-group-item active' style='background-color:#ffffff; border-color:#ddd;'>
-                                    <button type='button' class='btn btn-default'>他の".$value['0']['Category']."を見る</button><span class='badge' style='font-size : 10pt'>".number_format($value['0']['Price'])."円</span>";
+                                    <button type='button' class='btn btn-default'>他の".$value['0']['Category']."</button><span class='price_html' style='font-size : 15pt;'>".number_format($value['0']['Price'])."円</span>";
                     echo        "</div>";
                     echo        "<div class='product-image'>";
                     echo            "<img class='product-image menu-item list-group-item' src=".$value['0']['ImageUrl'].">";
                     echo        "</div>";
-                    echo        "<a href=".$value['0']['Url']." class='menu-item list-group-item' target='_new'>".$value['0']['Name']."<br /><button type='button' class='btn btn-default'>購入する</button><span class='badge' style='font-size : 18pt'>売れ筋1位</span></a>";
+                    echo        "<a href=".$value['0']['Url']." class='menu-item list-group-item' target='_new'>".$value['0']['Name']."<br /><button type='button' class='btn btn-default'>購入する</button><span class='badge2' style='font-size : 18pt'>売れ筋1位</span></a>";
                     echo    "</div>";
                     echo "</a>";
                     echo "</div>";
@@ -83,19 +83,17 @@
             <div class="panel panel-default">
                 <div class="panel-heading"><h3 class="panel-title">引っ越しの予算を選択して下さい</h3></div>
                 <div class="panel-body">
-                    <div class="text-left">
-                        <select name="budget" class="form-control">
-                            <?php
-                            for($i=10000; $i<=1000000; $i = $i +10000) {
-                                if($i === 200000){
-                                    echo "<option selected='selected'>".number_format($i)."円</option>";
-                                } else {
-                                    echo "<option>".number_format($i)."円</option>";
-                                }
+                    <select name="budget" class="form-control"  style="height: 50px; font-size: 30px;">
+                        <?php
+                        for($i=10000; $i<=1000000; $i = $i +10000) {
+                            if($i === 200000){
+                                echo "<option selected='selected'>".number_format($i)."円</option>";
+                            } else {
+                                echo "<option>".number_format($i)."円</option>";
                             }
-                            ;?>
-                        </select>
-                    </div>
+                        }
+                        ;?>
+                    </select>
                 </div>
             </div>
 
@@ -139,7 +137,7 @@
             </div>
             <div class="text-right">
                 <a href=javascript:location.reload()>
-                    <button type='button' id="clear" class='btn btn-info' style='margin : 3px; width : 100px';>クリア</button> 
+                    <button type="button" id="clear" class="btn btn-info btn-lg btn-block" style='margin : 3px;'>クリア</button>
                 </a> 
             </div>
         </div>     
