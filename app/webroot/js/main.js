@@ -7,6 +7,18 @@ $(amount_discription).css("display", "none");
 //clearの表示・非表示
 var clear_display_button = $('#clear');
 $(clear_display_button).css("display", "none");
+//カートエリアの表示非表示
+var cart_area = $('#cart');
+$(cart_area).css("display", "none");
+//プログレスバーの表示・非表示
+var progress_bar_display = $('.progress');
+$(progress_bar_display).css("display", "none");
+//analysticの表示・非表示
+var analist_block = $('#analist_block');
+$(analist_block).css("display", "none");
+//プログレスバーの文字色を変更
+var progress_bar_font = $('.progress-bar');
+$(progress_bar_font).css("color","#f5f5f5");
 
 //カンマ区切りにする関数
 function addFigure(str) {
@@ -40,6 +52,7 @@ $("select").change(function () {
 	var piece_percentage = [];
 	var display_line_rate = [];
 	var rest = [];
+	var table_rate =[];
 	for(var num=0; num<primary_buttons.length; num++){
 		//idから表示されているカテゴリーを取得する
 		primary_buttons_id[num] = $(primary_buttons[num]).attr('id');
@@ -80,6 +93,10 @@ $("select").change(function () {
 	    	piece_percentage[num] = $(piece_percentage[num]).find('#piece_percentage');
 	    	$(piece_percentage[num]).html(display_line_rate[num]);
     	}
+    	//テーブルのパーセンテージを表示する
+    	table_rate[num] = primary_buttons_id[num] + '9';
+		table_rate[num] = $('.line').find('#' + table_rate[num]);
+    	$(table_rate[num]).html(display_line_rate[num]);
     	//対象のプログレスバーを取得し、長さを変更する
 		change_width_bars[num] = $('.progress').find('#' + change_width_bars[num]);
 		$(change_width_bars[num]).width(line_rate_text[num]);
@@ -144,6 +161,9 @@ $(function(){
 			//押されたボタンに対応するプログレスバーを取得する
 			var progress = pushed + '8';
 			progress = $('.progress').find('#' + progress);
+			//押されたボタンに対応するテーブルの割合を取得する
+			var table_rate = pushed + '9';
+			table_rate = $('.line').find('#' + table_rate);
 			//予算に体する金額を表示する
 			var percentage = Math.round(contorol_number * amount / budget * 100);
 			var percentage_text = percentage +'%';
@@ -167,18 +187,32 @@ $(function(){
 					$(table_header).show();
 					$(amount_discription).show();
 					$(clear_display_button).show();
+					$(progress_bar_display).show();
+					$(cart_area).show();
+					$(analist_block).show();
 				} else {
 					$(table_header).css("display", "none");
 					$(amount_discription).css("display", "none");
 					$(clear_display_button).css("display", "none");
+					$(progress_bar_display).css("display", "none");
+					$(cart_area).css("display", "none");
+					$(analist_block).css("display", "none");
 				}
 				//プログレスバーのwidthを変更する
 				$(progress).width(percentage_text);
+				//プログレスバーの文字色を白にする
+				if(percentage > 1){
+					$(progress).css("color","#ffffff");
+				} else {
+					$(progress).css("color","#f5f5f5");
+				}
 		    	//バーのパーセンテージをバーに表示する（7％以上の時だけ）
 		    	if(percentage > 7) {
 			    	var piece_percentage = $(progress).find('#piece_percentage');
 			    	$(piece_percentage).html(percentage_text);
 		    	}
+		    	//テーブルのパーセンテージを表示する
+		    	$(table_rate).html(percentage_text);
 				//合計が予算を超えたとき
 				if(sum > budget) {
 					//ゆらす
@@ -232,14 +266,23 @@ $(function(){
 					$(table_header).show();
 					$(amount_discription).show();
 					$(clear_display_button).show();
-					
+					$(progress_bar_display).show();
+					$(cart_area).show();
+					$(analist_block).show();
 				} else {
 					$(table_header).css("display", "none");
 					$(amount_discription).css("display", "none");
 					$(clear_display_button).css("display", "none");
+					$(progress_bar_display).css("display", "none");
+					$(cart_area).css("display", "none");
+					$(analist_block).css("display", "none");
 				}
 				//プログレスバーのwidthを変更する
 				$(progress).width('0%');
+		    	//テーブルのパーセンテージを表示する
+		    	$(table_rate).html('0%');
+				//プログレスバーの色を変更する
+				$(progress).css("color","#f5f5f5");
 				//合計が予算を超えたとき
 				if(sum > budget) {
 					//青色のボタンを取得する
@@ -295,8 +338,8 @@ $(document).ready(function(){
 		//②jsのオブジェクトの中から、クリックされたアイテムがキーのurlを選択する（どうする？？）
 		var access_url = js_url[clicked_item];
 		//③書き換える対象の変数を定義する
-        var new_price = $(this).children('.active').children('span');
-        var new_image = $(this).children('.product-image').children('img');
+        var new_price = $(this).find('.active').find('.price_html');
+        var new_image = $(this).find('.product-image').find('img');
         var new_name = $(this).next('a');
 		//現在の合計金額
 		sum = $('#sum').html();
@@ -321,6 +364,9 @@ $(document).ready(function(){
     	var amount = clicked_item + '6';
     	var amount = $('.line').find('#' + amount).html();
     	var amount = Number(amount);
+		//押されたボタンに対応するテーブルの割合を取得する
+		var table_rate = clicked_item + '9';
+		table_rate = $('.line').find('#' + table_rate);
         //④アイテムがクリックされた回数をカウントする
         if(typeof click_count === "undefined") {
         	click_count = [];
@@ -374,10 +420,11 @@ $(document).ready(function(){
             	//これをhtmlを書き換える
             	$(new_price).html(price_comma);
             	$(new_image).attr("src",data[click_count[clicked_item]]['ExImage']['Url']);
-            	$(new_name).html(data[click_count[clicked_item]]['Name'] + "<br /><button type='button' class='btn btn-default'>購入する</button><span class='badge2' style='font-size : 18pt'>売れ筋" + (click_count[clicked_item] + 1) + "位</span>");
+            	$(new_name).html(data[click_count[clicked_item]]['Name'] + "<br /><button type='button' class='btn btn-default btn-block'>購入する</button>");
             	$(new_name).attr("href",data[click_count[clicked_item]]['Url']);
 		    	$(line_price[0]).html(price_comma);
 		    	$(category_sum).html(category_sum_text);
+		    	$(table_rate).html(percentage_text);
 		    	//バーのパーセンテージをバーに表示する（7％以上の時だけ）
 		    	if(percentage > 7) {
 			    	var piece_percentage = $(progress).find('#piece_percentage');
@@ -385,10 +432,11 @@ $(document).ready(function(){
 		    	}
 		    	//プログレスバーの長さを変える
 		    	$(progress).width(percentage_text);
+		    	//テーブルのパーセンテージを表示する
+		    	$(table_rate).html(percentage_text);
 				//総額に体する現在のパーセンテージを変更する
 				sum_percentage = Math.round(sum / budget * 100) + '%';
 				$("#sum_percentage").text(sum_percentage);
-
 				//合計が予算を超えたとき
 				if(sum > budget) {
 					//ゆらす
@@ -450,7 +498,18 @@ $(document).ready(function(){
 		progress = $('.progress').find('#' + progress);
 		var percentage = Math.round(category_sum_number / budget * 100);
 		percentage_text = percentage +'%';
+		//プログレスバーの長さを変更する
 		$(progress).width(percentage_text);
+		//押されたボタンに対応するテーブルの割合を取得する
+		var table_rate = category + '9';
+		table_rate = $('.line').find('#' + table_rate);
+    	$(table_rate).html(percentage_text);
+		//プログレスバーの文字色を白にする
+		if(percentage > 1){
+			$(progress).css("color","#ffffff");
+		} else {
+			$(progress).css("color","#f5f5f5");
+		}
 		//バーのパーセンテージをバーに表示する（7％以上の時だけ）
 		if(percentage > 7) {
 	    	var piece_percentage = $(progress).find('#piece_percentage');
@@ -544,6 +603,16 @@ $(document).ready(function(){
 		}
 		//プログレスバーの幅を変える
 		$(progress).width(percentage_text);
+		//押されたボタンに対応するテーブルの割合を取得する
+		var table_rate = category + '9';
+		table_rate = $('.line').find('#' + table_rate);
+    	$(table_rate).html(percentage_text);
+		//プログレスバーの文字色を白にする
+		if(percentage > 1){
+			$(progress).css("color","#ffffff");
+		} else {
+			$(progress).css("color","#f5f5f5");
+		}
 		//小計を書き換える
 		var category_sum = category + '7';
 		$('.line').find('#' + category_sum).html(category_sum_text);
@@ -565,7 +634,6 @@ $(document).ready(function(){
 		//総額に体する現在のパーセンテージを変更する
 		sum_percentage = Math.round(new_sum / budget * 100) + '%';
 		$("#sum_percentage").text(sum_percentage);
-
 		//合計が予算を超えたとき
 		if(new_sum > budget) {
 			//青色のボタンを取得する

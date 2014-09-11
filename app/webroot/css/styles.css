@@ -1,9 +1,14 @@
 body{
  zoom: 70%;
+ font-family: sans-serif
 }
 
 th {
  text-align: center;
+}
+
+a {
+ color: #000000;
 }
 
 .float {
