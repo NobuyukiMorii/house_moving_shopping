@@ -10,6 +10,10 @@ th {
  float: left;
 }
 
+.left {
+ margin-right: auto;
+}
+
 .margin_top_zero {
  margin-top:0px;
  padding-top: 0px; 

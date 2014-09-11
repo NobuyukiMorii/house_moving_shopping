@@ -8,6 +8,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=3, maximum-scale=1">
         <?php echo $this->Html->css('bootstrap.min.css');?>
         <?php echo $this->Html->css('styles.css');?>
+        <link rel="shortcut icon" href="<?php echo $this->html->url('/favicon.ico');?>">
 		<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 	</head>
 	<body>
@@ -36,14 +37,9 @@
         </div>
 
         <div class="col-sm-9">
-            <div class="productsrow" style="height : 500px">
-                <?php
-                    $i = 0;
-                    foreach($data as $key => $value) {
-                    $i = $i + 1;
-                    if($i ==0) {
-                        echo "<div class='float'>";
-                    }
+            <div class="productsrow" style="height : 2000px">
+                <?php foreach($data as $key => $value) {
+                    echo "<div class='left'>";
                     echo "<a href = '' class='change' id=".$key."2 >";
                     echo    "<div class='product menu-category' id=".$key.">";
                     echo        "<div class='menu-category-name list-group-item active' style='background-color:#ffffff; border-color:#ddd;'>
@@ -120,7 +116,7 @@
                 <div class="panel-heading"><h3 class="panel-title">数量を変更して下さい</h3></div>   
                 <div class="panel-body">
                 <table class="table table-bordered">
-                    <tr id='table_header'><th>カテゴリー</th><th>単価</th><th>数量</th><th>小計</th></tr>
+                    <tr id='table_header' bgcolor="#f5f5f5"><th>カテゴリー</th><th>単価</th><th>数量</th><th>小計</th></tr>
                     <?php foreach($data as $key => $value) {
 
                         echo "<tr class='line'>
