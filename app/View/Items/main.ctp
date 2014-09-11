@@ -12,7 +12,7 @@
 	</head>
 	<body>
     <!--tMain-->
-        <div class="col-sm-9">
+        <div class="col-sm-12">
             <div class="progress">
                 <?php 
                 $i = 0;
@@ -34,25 +34,16 @@
                 ;?>
             </div>
         </div>
-        <div class="col-sm-3">
-        <div class="col-sm-4">
-            <h4 class='margin_top_zero' style='text-align: left'><span id="sum_percentage"></span></h4>
-        </div>
-        <div class="col-sm-4">
-            <h4 class='margin_top_zero' style='text-align: left'><span id="sum">0</span>円</h4>
-        </div>
-        <div class="col-sm-4">
-            <div class="text-right">
-                <a href=javascript:location.reload()>
-                    <button type='button' id="clear" class='btn btn-info' style='margin : 3px; width : 100px';>クリア</button> 
-                </a> 
-            </div>
-        </div>
-        </div>
 
         <div class="col-sm-9">
-            <div class="productsrow">
-                <?php foreach($data as $key => $value) {
+            <div class="productsrow" style="height : 500px">
+                <?php
+                    $i = 0;
+                    foreach($data as $key => $value) {
+                    $i = $i + 1;
+                    if($i ==0) {
+                        echo "<div class='float'>";
+                    }
                     echo "<a href = '' class='change' id=".$key."2 >";
                     echo    "<div class='product menu-category' id=".$key.">";
                     echo        "<div class='menu-category-name list-group-item active' style='background-color:#ffffff; border-color:#ddd;'>
@@ -64,12 +55,35 @@
                     echo        "<a href=".$value['0']['Url']." class='menu-item list-group-item' target='_new'>".$value['0']['Name']."<br /><button type='button' class='btn btn-default'>購入する</button><span class='badge' style='font-size : 18pt'>売れ筋1位</span></a>";
                     echo    "</div>";
                     echo "</a>";
+                    echo "</div>";
 
                 } ;?>
             </div>
         </div>
 
         <div class="col-sm-3">
+
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3 class="panel-title">予算に体する割合</h3></div>
+                <div class="panel-body">
+                    <h2 style='text-align: center'><span id="sum_percentage">0%</span></h2>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3 class="panel-title">合計金額</h3></div>
+                <div class="panel-body">
+                    <h2 style='text-align: center'><span id="sum">0</span>円</h2>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3 class="panel-title">予算ー合計</h3></div>
+                <div class="panel-body">
+                    <h2 style='text-align: center'><span id="rest">0</span>円</h2>
+                </div>
+            </div>
+
             <div class="panel panel-default">
                 <div class="panel-heading"><h3 class="panel-title">引っ越しの予算を選択して下さい</h3></div>
                 <div class="panel-body">
@@ -126,6 +140,11 @@
                     ?>
                 </table>
                 </div>
+            </div>
+            <div class="text-right">
+                <a href=javascript:location.reload()>
+                    <button type='button' id="clear" class='btn btn-info' style='margin : 3px; width : 100px';>クリア</button> 
+                </a> 
             </div>
         </div>     
 

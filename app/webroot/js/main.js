@@ -39,6 +39,7 @@ $("select").change(function () {
 	var change_width_bars = [];
 	var piece_percentage = [];
 	var display_line_rate = [];
+	var rest = [];
 	for(var num=0; num<primary_buttons.length; num++){
 		//idから表示されているカテゴリーを取得する
 		primary_buttons_id[num] = $(primary_buttons[num]).attr('id');
@@ -47,6 +48,9 @@ $("select").change(function () {
 		sum_ = $('#sum').html();
 		sum_ = sum_.slice(0);
 		sum_ = Number(delComma1(sum_));
+    	//残額を表示する
+    	var rest = addFigure(budget - sum_);
+    	$('#rest').html(rest);
 		//総額に体する現在のパーセンテージを変更する
 		sum_percentage = Math.round(sum_ / budget * 100) + '%';
 		$("#sum_percentage").text(sum_percentage);
@@ -61,8 +65,8 @@ $("select").change(function () {
     	display_line_rate[num] = Math.round(line_rate[num] / budget * 100) + '%';
     	//バーの幅のパーセンテージを計算する
     	if(sum_ >= budget) {
-			//ゆらす
-			$.yure($('.progress'));
+			//ゆらす（１回だけ）
+			if(num === 0){$.yure($('.progress'))};
     		line_rate[num]  = line_rate[num] / sum_ * 100;
     	} else {
     		line_rate[num]  = line_rate[num] / budget * 100;
@@ -88,7 +92,7 @@ $(function(){
 	//ボタンのDOMを取得する
 	var button = $("#button").children(".btn");
 	//アイテムのDOMを取得する
-	var product = $(".productsrow").children(".product");
+	var product = $(".productsrow").find(".product");
 	//見積表のDOMを取得する
 	var line = $(".line");
 	//アイテムの金額を取得する
@@ -152,6 +156,9 @@ $(function(){
 				sum = sum_number + contorol_number * amount;
 				sum_comma = addFigure(sum);
 				$("#sum").text(sum_comma);
+		    	//残額を表示する
+		    	var rest = addFigure(budget - sum);
+		    	$('#rest').html(rest);
 				//総額に体する現在のパーセンテージを変更する
 				sum_percentage = Math.round(sum / budget * 100) + '%';
 				$("#sum_percentage").text(sum_percentage);
@@ -214,6 +221,9 @@ $(function(){
 				sum = sum_number - contorol_number * amount;
 				sum_comma = addFigure(sum);
 				$("#sum").text(sum_comma);
+		    	//残額を表示する
+		    	var rest = addFigure(budget - sum);
+		    	$('#rest').html(rest);
 				//総額に体する現在のパーセンテージを変更する
 				sum_percentage = Math.round(sum / budget * 100) + '%';
 				$("#sum_percentage").text(sum_percentage);
@@ -350,6 +360,9 @@ $(document).ready(function(){
 		    	sum = sum_number + Number(data[click_count[clicked_item]]['Price']['_value']) * amount - contorol_number * amount;
 				sum_comma = addFigure(sum);
 				$("#sum").text(sum_comma);
+		    	//残額を表示する
+		    	var rest = addFigure(budget - sum);
+		    	$('#rest').html(rest);
 				//jsonで引いてきた価格をカンマ付きの文字列にする
 				price_comma = addFigure(data[click_count[clicked_item]]['Price']['_value']) + '円';
 				//数量✖️単価を計算する
@@ -454,6 +467,9 @@ $(document).ready(function(){
 		new_sum = sum_number + piece_price_number;
 		new_sum_text = addFigure(new_sum);
 		$('#sum').html(new_sum_text);
+    	//残額を表示する
+    	var rest = addFigure(budget - new_sum);
+    	$('#rest').html(rest);
 		//総額に体する現在のパーセンテージを変更する
 		sum_percentage = Math.round(new_sum / budget * 100) + '%';
 		$("#sum_percentage").text(sum_percentage);
@@ -543,6 +559,9 @@ $(document).ready(function(){
 		}
 		new_sum_text = addFigure(new_sum);
 		$('#sum').html(new_sum_text);
+    	//残額を表示する
+    	var rest = addFigure(budget - new_sum);
+    	$('#rest').html(rest);
 		//総額に体する現在のパーセンテージを変更する
 		sum_percentage = Math.round(new_sum / budget * 100) + '%';
 		$("#sum_percentage").text(sum_percentage);
