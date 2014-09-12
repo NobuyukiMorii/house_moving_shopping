@@ -16,7 +16,7 @@
 
         <div class="col-sm-12">
             <h1 style="text-align : center">Think Shop</h1>
-            <p class="lead" style="text-align : center">考えて買う、あなたに</p>
+            <p class="lead" style="text-align : center">「考えて買う」をスマートに</p>
         </div>
 
         <div id="analist_block">

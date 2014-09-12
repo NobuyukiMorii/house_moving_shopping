@@ -36,7 +36,6 @@ var budget = 200000;
 
 $("select").change(function () {
   	budget = $(this).val();
-  	console.log(budget);
 	budget = new Array(budget.split( '円' ));
 	budget = budget[0][0];
 	budget = delComma1(budget);
