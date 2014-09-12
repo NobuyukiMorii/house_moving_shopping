@@ -1,9 +1,6 @@
 //table_headerの表示・非表示
 var table_header = $('#table_header');
 $(table_header).css("display", "none");
-//amount_discriptionの表示・非表示
-var amount_discription = $('#amount_discription');
-$(amount_discription).css("display", "none");
 //clearの表示・非表示
 var clear_display_button = $('#clear');
 $(clear_display_button).css("display", "none");
@@ -184,7 +181,6 @@ $(function(){
 				//テーブルヘッダーの表示非表示
 				if(sum>0) {
 					$(table_header).show();
-					$(amount_discription).show();
 					$(clear_display_button).show();
 					$(progress_bar_display).show();
 					$(cart_area).show();
@@ -192,7 +188,6 @@ $(function(){
 					$('#page_title').slideUp();
 				} else {
 					$(table_header).css("display", "none");
-					$(amount_discription).css("display", "none");
 					$(clear_display_button).css("display", "none");
 					$(progress_bar_display).css("display", "none");
 					$(cart_area).css("display", "none");
@@ -265,14 +260,12 @@ $(function(){
 				//テーブルヘッダーを表示する
 				if(sum>0) {
 					$(table_header).show();
-					$(amount_discription).show();
 					$(clear_display_button).show();
 					$(progress_bar_display).show();
 					$(cart_area).show();
 					$('#page_title').slideUp();
 				} else {
 					$(table_header).css("display", "none");
-					$(amount_discription).css("display", "none");
 					$(clear_display_button).css("display", "none");
 					$(progress_bar_display).css("display", "none");
 					$(cart_area).css("display", "none");

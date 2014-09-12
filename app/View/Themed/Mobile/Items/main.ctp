@@ -27,48 +27,53 @@
             <p class="lead" style="text-align : center">「考えて買う」をスマートに</p>
         </div>
 
+        <div class="col-sm-12 col-xs-12">
+            <div class="text-left" id="button" style='margin-bottom: 20px;'>
+                <?php foreach($data as $key => $value) {
+                    echo "<button type='button' id=".$key."_button class='btn btn-default btn-xs' style='margin : 1px; width : 100px';>".$value['0']['Category']."</button>";
+                }
+                ?>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-xs-12">
+            <table class="table table-bordered">
+                <tr id='table_header' bgcolor="#f5f5f5"><th>アイテム</th><th>価格</th><th>数量</th><th>小計</th><th>割合</th></tr>
+                <?php foreach($data as $key => $value) {
+
+                    echo "<tr class='line'>
+                        <td>".$value['0']['Category']."</td>
+                        <td id=".$key."3 style='text-align: right'>".number_format($value['0']['Price'])."円</td>
+                        <td>
+                            <div style='text-align: left'>
+                                <button type='button' class='btn btn-default btn-xs plus' id=".$key."4>
+                                <span class='glyphicon glyphicon-plus'></span>
+                                </button>
+                                <button type='button' class='btn btn-default btn-xs minus' id=".$key."5>
+                                <span class='glyphicon glyphicon-minus'></span></button>
+                                <span id=".$key."6>1</span>
+                            </div>
+                        </td>
+                        <td class='category_sum' id=".$key."7 style='text-align: right'>".number_format($value['0']['Price'])."円</td>
+                        <td class='category_sum' id=".$key."9 style='text-align: right'>100%</td>
+                       </tr>";
+                }
+                ?>
+            </table>
+        </div>
+
         <div id="analist_block">
             <div class="col-sm-12 col-xs-12">
-                <div class="panel panel-default" style="height :100px">
-                    <div class="panel-heading"><h6 class="panel-title" style="text-align : center; margin-top:0px;">パーセンテージ</h6></div>
-                    <div class="panel-body">
-                        <h6 style='text-align: center'><span id="sum_percentage">0%</span></h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-12 col-xs-12">
-                <div class="panel panel-default" style="height :100px">
-                    <div class="panel-heading"><h6 class="panel-title" style="text-align : center; margin-top:0px;">合計額</h6></div>
-                    <div class="panel-body">
-                        <h6 style='text-align: center'><span id="sum">0</span>円</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-12 col-xs-12">
-                <div class="panel panel-default" style="height :100px">
-                    <div class="panel-heading"><h6 class="panel-title" style="text-align : center; margin-top:0px; ">残り予算</h6></div>
-                    <div class="panel-body">
-                        <h6 style='text-align: center'><span id="rest">0</span>円</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-12 col-xs-12">
-                <div class="panel panel-default" style="height :100px">
-                    <div class="panel-heading"><h6 class="panel-title" style="text-align : center; margin-top:0px;">予算</h6></div>
-                    <div class="panel-body">
-                        <select name="budget" class="form-control" style="height: 30px; font-size: 10px; margin-top: 0px;">
-                            <?php
-                            for($i=10000; $i<=1000000; $i = $i +10000) {
-                                if($i === 200000){
-                                    echo "<option selected='selected'>".number_format($i)."円</option>";
-                                } else {
-                                    echo "<option>".number_format($i)."円</option>";
-                                }
-                            }
-                            ;?>
-                        </select>
-                    </div>
-                </div>
+                <table class="table table-bordered">
+                    <tr bgcolor="#f5f5f5">
+                        <th>割合</th><th>合計額</th><th>残り予算</th>
+                    </tr>
+                    <tr>
+                        <td id="sum_percentage">0%</td>
+                        <td><span id="sum">0</span>円</td>
+                        <td><span id="rest">0</span>円</td>
+                    </tr>
+                </table>
             </div>
         </div>
 
@@ -92,6 +97,25 @@
                     echo"<div class='".$data[$key][0]['class']."' style='width: 0%;' id=".$key."8>".$data[$key][0]['Category']."<span id='piece_percentage'></span></div>";
                 }
                 ;?>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-xs-12">
+            <div class="panel panel-default" style="height :100px">
+                <div class="panel-heading"><h6 class="panel-title" style="text-align : center;">予算</h6></div>
+                <div class="panel-body">
+                    <select name="budget" class="form-control" style="height: 30px; font-size: 10px;">
+                        <?php
+                        for($i=10000; $i<=1000000; $i = $i +10000) {
+                            if($i === 200000){
+                                echo "<option selected='selected'>".number_format($i)."円</option>";
+                            } else {
+                                echo "<option>".number_format($i)."円</option>";
+                            }
+                        }
+                        ;?>
+                    </select>
+                </div>
             </div>
         </div>
 
@@ -121,49 +145,6 @@
                     } ;?>
                 </div>
             </div>
-        </div>
-
-        <div class="col-sm-12 col-xs-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title" style="text-align : center">アイテム</h3>
-                </div>                
-                <div class="panel-body">
-
-                    <div class="text-left" id="button">
-                        <?php foreach($data as $key => $value) {
-                            echo "<button type='button' id=".$key."_button class='btn btn-default' style='margin : 3px; width : 100px';>".$value['0']['Category']."</button>";
-                        }
-                        ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-12 col-xs-12">
-            <table class="table table-bordered">
-                <tr id='table_header' bgcolor="#f5f5f5"><th>アイテム</th><th>価格</th><th>数量</th><th>小計</th><th>割合</th></tr>
-                <?php foreach($data as $key => $value) {
-
-                    echo "<tr class='line'>
-                        <td>".$value['0']['Category']."</td>
-                        <td id=".$key."3 style='text-align: right'>".number_format($value['0']['Price'])."円</td>
-                        <td>
-                            <div style='text-align: left'>
-                                <button type='button' class='btn btn-default btn-xs plus' id=".$key."4>
-                                <span class='glyphicon glyphicon-plus'></span>
-                                </button>
-                                <button type='button' class='btn btn-default btn-xs minus' id=".$key."5>
-                                <span class='glyphicon glyphicon-minus'></span></button>
-                                <span id=".$key."6>1</span>
-                            </div>
-                        </td>
-                        <td class='category_sum' id=".$key."7 style='text-align: right'>".number_format($value['0']['Price'])."円</td>
-                        <td class='category_sum' id=".$key."9 style='text-align: right'>100%</td>
-                       </tr>";
-                }
-                ?>
-            </table>
         </div>
 
         <div class="col-sm-12 col-xs-12">
