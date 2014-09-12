@@ -2,10 +2,15 @@
 
 class ItemsController extends AppController {
 
-	public $components = array('DebugKit.Toolbar','Yahoo');
+	public $components = array('Yahoo','RequestHandler');
 
 	public function main() {
+		//レイアウトファイルは使わない
 		$this->autoLayout = false;
+        //スマートフォン判定
+		if($this->RequestHandler->isMobile()) {
+    		$this->theme = 'Mobile';
+		}
 		//カテゴリーIDを取得するurlを作成する
 		$category_url = $this->Yahoo->get_category_id_url();
 		//最初のビューで表示する時に使うurlを取得する（１件取得）
