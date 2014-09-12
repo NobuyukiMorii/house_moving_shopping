@@ -189,6 +189,7 @@ $(function(){
 					$(progress_bar_display).show();
 					$(cart_area).show();
 					$(analist_block).show();
+					$('#page_title').slideUp();
 				} else {
 					$(table_header).css("display", "none");
 					$(amount_discription).css("display", "none");
@@ -196,6 +197,7 @@ $(function(){
 					$(progress_bar_display).css("display", "none");
 					$(cart_area).css("display", "none");
 					$(analist_block).css("display", "none");
+					$('#page_title').slideDown();
 				}
 				//プログレスバーのwidthを変更する
 				$(progress).width(percentage_text);
@@ -267,7 +269,7 @@ $(function(){
 					$(clear_display_button).show();
 					$(progress_bar_display).show();
 					$(cart_area).show();
-					$(analist_block).show();
+					$('#page_title').slideUp();
 				} else {
 					$(table_header).css("display", "none");
 					$(amount_discription).css("display", "none");
@@ -275,6 +277,7 @@ $(function(){
 					$(progress_bar_display).css("display", "none");
 					$(cart_area).css("display", "none");
 					$(analist_block).css("display", "none");
+					$('#page_title').slideDown();
 				}
 				//プログレスバーのwidthを変更する
 				$(progress).width('0%');
@@ -572,11 +575,12 @@ $(document).ready(function(){
     	var target = category + '6';
     	var amount = $('.line').find('#' + target).html();
     	var amount = Number(amount);
-    	if(amount >= 1) { 
+    	if(amount >= 2) { 
     		var new_amount = amount - 1;
     	} else {
-    		var new_amount = amount;
+    		var new_amount = 1;
     	}
+    	console.log(new_amount);
     	$('.line').find('#' + target).html(new_amount);
 		//単価を取得する
 		var at_piece = category + '3';
@@ -620,7 +624,7 @@ $(document).ready(function(){
 		sum_number = sum.slice(0);
 		sum_number = Number(delComma1(sum_number));
 		//更新後の合計金額を計算する
-		if(amount >= 1) { 
+		if(amount >= 2) { 
 			new_sum = sum_number - piece_price_number;
 		} else {
 			new_sum = sum_number;

@@ -14,7 +14,7 @@
 	<body>
     <!--tMain-->
 
-        <div class="col-sm-12">
+        <div class="col-sm-12" id='page_title'>
             <h1 style="text-align : center">Think Shop</h1>
             <p class="lead" style="text-align : center">「考えて買う」をスマートに</p>
         </div>
