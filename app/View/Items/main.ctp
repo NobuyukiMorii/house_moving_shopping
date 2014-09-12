@@ -1,19 +1,27 @@
 <!DOCTYPE html>
 <html lang="ja">
-	<head>
+    <!-- OGPを利用 -->
+	<head prefix="og: http://ogp.me/ns#  website: http://ogp.me/ns/website#">
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8">
 		<title>Think Shop</title>
 		<meta name="generator" content="Bootply" />
 		<meta name="viewport" content="width=device-width, initial-scale=3, maximum-scale=1">
+        <!-- FBのshare関連のメタタグ -->
+        <meta property="og:site_name" congtent="Think Shop" />
+        <meta property="og:title" content="Thnk Shop" />
+        <meta property="og:url" content="http://mory.weblike.jp/house_moving_shopping/Items/main" />
+        <meta property="og:description" content="引っ越しの買い物って予算を決めたり、買う物をリストアップしたり、とても大変。Think Shopを使えば、「何を買えばいいのか？いくら位かかるのか？何にお金をかけて？何にお金をかけないか？」などの考え事を、画面を見ながら簡単に出来ます。引っ越しのお供にThink Shop。" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="http://mory.weblike.jp/house_moving_shopping/img/shopping_cart.jpg" />
         <?php echo $this->Html->css('bootstrap.min.css');?>
         <?php echo $this->Html->css('styles.css');?>
-        <link rel="shortcut icon" href="<?php echo $this->html->url('/favicon.ico');?>">
+        <link rel="shortcut icon" href="<?php echo $this->Html->url('/favicon.ico');?>">
 		<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 	</head>
+
 	<body>
     <!--tMain-->
-
         <div class="col-sm-12" id='page_title'>
             <h1 style="text-align : center">Think Shop</h1>
             <p class="lead" style="text-align : center">「考えて買う」をスマートに</p>
