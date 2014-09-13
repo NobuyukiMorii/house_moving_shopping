@@ -42,7 +42,7 @@
                     <p class="lead" style="text-align: center; padding: 13% 10%; color:#000000">全部でいくらかかるの？<p>
                 </div>
                 <div id="balloon-1-left" style="margin-top: 10%;">
-                    <p class="lead" style="text-align: center; padding: 13% 10%; color:#000000">Think Shopならそんな考え事がとても簡単！！<br />下のボタンをクリックしてStart！<p>
+                    <p class="lead" style="text-align: center; padding: 13% 10%; color:#000000">Think Shopならそんな考え事がとても簡単！！<br />新生活を彩るアイテムをクリックしてStart！<p>
                 </div>
             </div>
         </div>
@@ -141,6 +141,14 @@
         </div>
 
         <div class="col-sm-3" style="float: right">
+
+            <div id="clone">
+                <div id="clone_image" align="middle"></div>
+                <div id="clone_price" align="left"></div>
+                <div id="clone_name" align="left"></div>
+                <div id="clone_description" align="left"></div>
+            </div>
+
             <div class="panel panel-default">
                 <div class="panel-heading"><h3 class="panel-title" style="text-align : center">アイテム</h3></div>                
                 <div class="panel-body">
@@ -178,9 +186,9 @@
             </table>
 
             <div class="text-right">
-                <a href=javascript:location.reload()>
+          
                     <button type="button" id="clear" class="btn btn-info btn-lg btn-block" style='margin : 3px;'>クリア</button>
-                </a> 
+        
             </div>
 
             <textarea id="memo" class="form-control" rows="10" style='margin : 20px 0px;'>メモ欄</textarea>
@@ -188,7 +196,7 @@
         </div>
     <footer>
         <div class="col-sm-12">
-            <h1 id="service_name" style="text-align: right; margin : 40px 0px;">Think Shop for 引っ越し</h1>
+            <h3 id="service_name" style="text-align: right; margin : 40px 0px;">Think Shop for 引っ越し</h3>
         </div>
     </footer>
     <!--/Main-->

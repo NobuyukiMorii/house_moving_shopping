@@ -1,9 +1,7 @@
 //table_headerの表示・非表示
 var table_header = $('#table_header');
 $(table_header).css("display", "none");
-//amount_discriptionの表示・非表示
-var amount_discription = $('#amount_discription');
-$(amount_discription).css("display", "none");
+
 //clearの表示・非表示
 var clear_display_button = $('#clear');
 $(clear_display_button).css("display", "none");
@@ -40,6 +38,14 @@ function delComma1(w) {
 //プレグレスバーの最大値
 var budget = 200000;
 
+//クリアボタンを押した時の動作
+$('#clear').click(function(){
+	$(table_header).css("display", "none");
+
+
+});
+
+//セレクトボックスが
 $("select").change(function () {
   	budget = $(this).val();
 	budget = new Array(budget.split( '円' ));
@@ -190,7 +196,6 @@ $(function(){
 				//テーブルヘッダーの表示非表示
 				if(sum>0) {
 					$(table_header).show();
-					$(amount_discription).show();
 					$(clear_display_button).show();
 					$(progress_bar_display).show();
 					$(cart_area).show();
@@ -198,9 +203,9 @@ $(function(){
 					$('#page_title').slideUp();
 					$(memo).show();
 					$(service_name).show();
+					$("#clone").show();
 				} else {
 					$(table_header).css("display", "none");
-					$(amount_discription).css("display", "none");
 					$(clear_display_button).css("display", "none");
 					$(progress_bar_display).css("display", "none");
 					$(cart_area).css("display", "none");
@@ -208,6 +213,7 @@ $(function(){
 					$('#page_title').slideDown();
 					$(memo).css("display", "none");
 					$(service_name).css("display", "none");
+					$("#clone").css("display", "none");
 				}
 				//プログレスバーのwidthを変更する
 				$(progress).width(percentage_text);
@@ -256,7 +262,7 @@ $(function(){
 						change_width_bars[num] = $('.progress').find('#' + change_width_bars[num]);
 						$(change_width_bars[num]).width(line_rate_text[num]);
 					}
-				}
+				}				
 
 			} else {
 				//ボタンの色を青から白に
@@ -275,14 +281,13 @@ $(function(){
 				//テーブルヘッダーを表示する
 				if(sum>0) {
 					$(table_header).show();
-					$(amount_discription).show();
 					$(clear_display_button).show();
 					$(progress_bar_display).show();
 					$(cart_area).show();
 					$('#page_title').slideUp();
+					$("#clone").show();
 				} else {
 					$(table_header).css("display", "none");
-					$(amount_discription).css("display", "none");
 					$(clear_display_button).css("display", "none");
 					$(progress_bar_display).css("display", "none");
 					$(cart_area).css("display", "none");
@@ -290,6 +295,7 @@ $(function(){
 					$('#page_title').slideDown();
 					$(memo).css("display", "none");
 					$(service_name).css("display", "none");
+					$("#clone").css("display", "none");
 				}
 				//プログレスバーのwidthを変更する
 				$(progress).width('0%');
@@ -434,7 +440,7 @@ $(document).ready(function(){
             	//これをhtmlを書き換える
             	$(new_price).html(price_comma);
             	$(new_image).attr("src",data[click_count[clicked_item]]['ExImage']['Url']);
-            	$(new_name).html(data[click_count[clicked_item]]['Name'] + "<br /><button type='button' class='btn btn-default btn-block'>購入する</button>");
+            	$(new_name).html(data[click_count[clicked_item]]['Name'] + "<button type='button' class='btn btn-default btn-block'>購入する</button>");
             	$(new_name).attr("href",data[click_count[clicked_item]]['Url']);
 		    	$(line_price[0]).html(price_comma);
 		    	$(category_sum).html(category_sum_text);
@@ -481,6 +487,16 @@ $(document).ready(function(){
 						$(change_width_bars[num]).width(line_rate[num]);
 					}
 				}
+				//クローンにアイテムの情報を表示する
+				$('#clone_image').empty();
+				$('#clone_image').append('<img src=' + data[click_count[clicked_item]]['ExImage']['Url'] + '><br />');
+				$('#clone_name').empty();
+				$('#clone_name').append('<h4>' + data[click_count[clicked_item]]['Name'] + '</h4>');
+				$('#clone_price').empty();
+				$('#clone_price').append('<h3>' + price_comma + '&nbsp予算比' +  percentage_text + '&nbspレビュー' + data[click_count[clicked_item]]['Review']['Rate'] + '点</h3>');
+				$('#clone_description').empty();
+				$('#clone_description').append("<h6'>" + data[click_count[clicked_item]]['Description'] + "</h6>");
+				
             });
 
         }
