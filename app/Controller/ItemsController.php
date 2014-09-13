@@ -3,7 +3,13 @@
 class ItemsController extends AppController {
 	//yahooコンポーネントとリクエストハンドラーを使う
 	public $components = array('Yahoo','RequestHandler');
+
 	
+	public function index() {
+		//レイアウトファイルは使わない
+		$this->autoLayout = false;
+	}
+
 	public function main() {
 		//レイアウトファイルは使わない
 		$this->autoLayout = false;

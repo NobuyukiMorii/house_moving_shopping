@@ -31,7 +31,7 @@
                     <p class="lead" style="text-align: center; padding: 13% 10%; color:#000000">何を買おう？<p>
                 </div>
                 <div id="balloon-1-right" style="margin-top: 10%;">
-                    <p class="lead" style="text-align: center; padding: 13% 10%; color:#000000">何にお金をかけよう？<p>
+                    <p class="lead" style="text-align: center; padding: 13% 10%; color:#000000">どうやって予算内に収めよう？<p>
                 </div>
             </div>
             <div class="col-sm-4">
@@ -114,29 +114,29 @@
                 ;?>
             </div>
             <div class="panel panel-default" id="cart">
-            <div class="productsrow">
-                <?php foreach($data as $key => $value) {
-                    echo "<div class='right'>";
-                    echo "<a href = '' class='change' id='".$key."2'>";
-                    echo    "<div class='product menu-category' id=".$key.">";
-                    echo        "<div class='menu-category-name list-group-item active col-sm-12' style='background-color:#f5f5f5; border-color:#ddd;'>
-                                    <div class='text-left col-sm-6'>
-                                        <span style='font-size : 10pt;'>".$value['0']['Category']."</span>
-                                    </div>
-                                    <div class='text-right col-sm-6'>
-                                        <span class='price_html' style='font-size : 10pt;'>".number_format($value['0']['Price'])."円</span>
-                                    </div>";
-                    echo        "</div>";
-                    echo        "<div class='product-image'>";
-                    echo            "<img class='product-image menu-item list-group-item' src=".$value['0']['ImageUrl'].">";
-                    echo        "</div>";
-                    echo        "<a href=".$value['0']['Url']." class='menu-item list-group-item' target='_new'>".$value['0']['Name']."<br /><button type='button' class='btn btn-default btn-block'>購入する</button></a>";
-                    echo    "</div>";
-                    echo "</a>";
-                    echo "</div>";
+                <div class="productsrow">
+                    <?php foreach($data as $key => $value) {
+                        echo "<div class='right'>";
+                        echo "<a href = '' class='change' id='".$key."2'>";
+                        echo    "<div class='product menu-category' id=".$key.">";
+                        echo        "<div class='menu-category-name list-group-item active col-sm-12' style='background-color:#f5f5f5; border-color:#ddd;'>
+                                        <div class='text-left col-sm-6'>
+                                            <span style='font-size : 10pt;'>".$value['0']['Category']."</span>
+                                        </div>
+                                        <div class='text-right col-sm-6'>
+                                            <span class='price_html' style='font-size : 10pt;'>".number_format($value['0']['Price'])."円</span>
+                                        </div>";
+                        echo        "</div>";
+                        echo        "<div class='product-image'>";
+                        echo            "<img class='product-image menu-item list-group-item' src=".$value['0']['ImageUrl'].">";
+                        echo        "</div>";
+                        echo        "<a href=".$value['0']['Url']." class='menu-item list-group-item' target='_new'>".$value['0']['Name']."<br /><button type='button' class='btn btn-default btn-block'>購入する</button></a>";
+                        echo    "</div>";
+                        echo "</a>";
+                        echo "</div>";
 
-                } ;?>
-            </div>
+                    } ;?>
+                </div>
             </div>
         </div>
 
@@ -186,17 +186,18 @@
             </table>
 
             <div class="text-right">
-          
+                <a href=javascript:location.reload()>
                     <button type="button" id="clear" class="btn btn-info btn-lg btn-block" style='margin : 3px;'>クリア</button>
-        
+                </a> 
             </div>
 
             <textarea id="memo" class="form-control" rows="10" style='margin : 20px 0px;'>メモ欄</textarea>
 
         </div>
     <footer>
-        <div class="col-sm-12">
-            <h3 id="service_name" style="text-align: right; margin : 40px 0px;">Think Shop for 引っ越し</h3>
+        <div class="col-sm-12" id="service_name">
+            <p class="lead" style="text-align: right; margin-top: 40px;">写真をクリックすると他の商品に変わります。<p>
+            <h3 style="text-align: right;  margin-top : 1px;">Think Shop for 引っ越し</h3>
         </div>
     </footer>
     <!--/Main-->

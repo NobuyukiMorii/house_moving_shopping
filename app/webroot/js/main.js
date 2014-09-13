@@ -38,13 +38,6 @@ function delComma1(w) {
 //プレグレスバーの最大値
 var budget = 200000;
 
-//クリアボタンを押した時の動作
-$('#clear').click(function(){
-	$(table_header).css("display", "none");
-
-
-});
-
 //セレクトボックスが
 $("select").change(function () {
   	budget = $(this).val();
