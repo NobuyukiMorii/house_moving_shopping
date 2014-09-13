@@ -1,9 +1,9 @@
 <?php
 
 class ItemsController extends AppController {
-
+	//yahooコンポーネントとリクエストハンドラーを使う
 	public $components = array('Yahoo','RequestHandler');
-
+	
 	public function main() {
 		//レイアウトファイルは使わない
 		$this->autoLayout = false;

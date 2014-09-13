@@ -19,6 +19,12 @@ $(analist_block).css("display", "none");
 //プログレスバーの文字色を変更
 var progress_bar_font = $('.progress-bar');
 $(progress_bar_font).css("color","#f5f5f5");
+//メモ欄を取得
+var memo = $('#memo');
+$(memo).css("display", "none");
+//サービス名を取得
+var service_name = $('#service_name');
+$(service_name).css("display", "none");
 
 //カンマ区切りにする関数
 function addFigure(str) {
@@ -190,6 +196,8 @@ $(function(){
 					$(cart_area).show();
 					$(analist_block).show();
 					$('#page_title').slideUp();
+					$(memo).show();
+					$(service_name).show();
 				} else {
 					$(table_header).css("display", "none");
 					$(amount_discription).css("display", "none");
@@ -198,6 +206,8 @@ $(function(){
 					$(cart_area).css("display", "none");
 					$(analist_block).css("display", "none");
 					$('#page_title').slideDown();
+					$(memo).css("display", "none");
+					$(service_name).css("display", "none");
 				}
 				//プログレスバーのwidthを変更する
 				$(progress).width(percentage_text);
@@ -278,6 +288,8 @@ $(function(){
 					$(cart_area).css("display", "none");
 					$(analist_block).css("display", "none");
 					$('#page_title').slideDown();
+					$(memo).css("display", "none");
+					$(service_name).css("display", "none");
 				}
 				//プログレスバーのwidthを変更する
 				$(progress).width('0%');

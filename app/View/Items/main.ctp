@@ -11,9 +11,10 @@
         <meta property="og:site_name" congtent="Think Shop" />
         <meta property="og:title" content="Thnk Shop" />
         <meta property="og:url" content="http://mory.weblike.jp/house_moving_shopping/Items/main" />
-        <meta property="og:description" content="引っ越しの買い物って予算を決めたり、買う物をリストアップしたり、とても大変。Think Shopを使えば、「何を買えばいいのか？いくら位かかるのか？何にお金をかけて？何にお金をかけないか？」などの考え事を、画面を見ながら簡単に出来ます。引っ越しのお供にThink Shop。" />
+        <meta property="og:description" content="引っ越しの買い物って、新生活に必要なものをリストアップしたり、予算内でどうやって物を揃えるのか悩んだり、結構頭使いますよね。Think Shopを使えば、リストアップしながら費用や予算の計算が出来て、とっても簡単。引っ越しには Think Shop。" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="http://mory.weblike.jp/house_moving_shopping/img/shopping_cart.jpg" />
+        <!-- FBのshare関連のメタタグここまで -->
         <?php echo $this->Html->css('bootstrap.min.css');?>
         <?php echo $this->Html->css('styles.css');?>
         <link rel="shortcut icon" href="<?php echo $this->Html->url('/favicon.ico');?>">
@@ -23,11 +24,30 @@
 	<body>
     <!--tMain-->
         <div class="col-sm-12" id='page_title'>
-            <h1 style="text-align : center">Think Shop</h1>
-            <p class="lead" style="text-align : center">「考えて買う」をスマートに</p>
+            <h1 style="text-align : center">Think Shop for 引っ越し</h1>
+            <p class="lead" style="text-align : center; margin-bottom: 70px;">「考えて買う」をスマートに</p>
+            <div class="col-sm-4" align="right" style="text-align: left;">
+                <div id="balloon-1-right">
+                    <p class="lead" style="text-align: center; padding: 13% 10%; color:#000000">何を買おう？<p>
+                </div>
+                <div id="balloon-1-right" style="margin-top: 10%;">
+                    <p class="lead" style="text-align: center; padding: 13% 10%; color:#000000">何にお金をかけよう？<p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <img src="<?php echo $this->Html->url('/img/hatena.jpg');?>" class="center"> 
+            </div>
+            <div class="col-sm-4">
+                <div id="balloon-1-left">
+                    <p class="lead" style="text-align: center; padding: 13% 10%; color:#000000">全部でいくらかかるの？<p>
+                </div>
+                <div id="balloon-1-left" style="margin-top: 10%;">
+                    <p class="lead" style="text-align: center; padding: 13% 10%; color:#000000">Think Shopならそんな考え事がとても簡単！！<br />下のボタンをクリックしてStart！<p>
+                </div>
+            </div>
         </div>
 
-        <div id="analist_block">
+        <div id="analist_block" style="margin-top: 1%;">
             <div class="col-sm-3">
                 <div class="panel panel-default" style="height :154px">
                     <div class="panel-heading"><h3 class="panel-title" style="text-align : center">パーセンテージ</h3></div>
@@ -124,7 +144,6 @@
             <div class="panel panel-default">
                 <div class="panel-heading"><h3 class="panel-title" style="text-align : center">アイテム</h3></div>                
                 <div class="panel-body">
-
                     <div class="text-left" id="button">
                         <?php foreach($data as $key => $value) {
                             echo "<button type='button' id=".$key."_button class='btn btn-default' style='margin : 3px; width : 100px';>".$value['0']['Category']."</button>";
@@ -163,8 +182,15 @@
                     <button type="button" id="clear" class="btn btn-info btn-lg btn-block" style='margin : 3px;'>クリア</button>
                 </a> 
             </div>
-        </div>     
 
+            <textarea id="memo" class="form-control" rows="10" style='margin : 20px 0px;'>メモ欄</textarea>
+
+        </div>
+    <footer>
+        <div class="col-sm-12">
+            <h1 id="service_name" style="text-align: right; margin : 40px 0px;">Think Shop for 引っ越し</h1>
+        </div>
+    </footer>
     <!--/Main-->
 	<!-- script references -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>

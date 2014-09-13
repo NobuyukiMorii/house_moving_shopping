@@ -1,6 +1,12 @@
+//現在の状況の確認ボタン
+var analist_block_button = $('#analist_block_button');
+//ジャンルボタン
+var jenre_button = $('#button');
 //table_headerの表示・非表示
-var table_header = $('#table_header');
+var table_header = $('#table');
 $(table_header).css("display", "none");
+//詳細を表示するボタン
+var detail =$('#detail');
 //clearの表示・非表示
 var clear_display_button = $('#clear');
 $(clear_display_button).css("display", "none");
@@ -13,6 +19,9 @@ $(progress_bar_display).css("display", "none");
 //analysticの表示・非表示
 var analist_block = $('#analist_block');
 $(analist_block).css("display", "none");
+//予算のセレクトボックスの表示・非表示
+var select_budget_control = $('#select_budget_control');
+$(select_budget_control).css("display", "none");
 //プログレスバーの文字色を変更
 var progress_bar_font = $('.progress-bar');
 $(progress_bar_font).css("color","#f5f5f5");
@@ -31,6 +40,46 @@ function delComma1(w) {
 //プレグレスバーの最大値
 var budget = 200000;
 
+//割合、合計額、残り予算の表示・非表示
+$('#analist_block_button').click(function(e){
+	if($(this).hasClass("btn-default")) {
+		$(this).removeClass("btn-default");$(this).addClass("btn-primary");
+	} else {
+		$(this).removeClass("btn-primary");$(this).addClass("btn-default");
+	}
+	$(analist_block).slideToggle();
+});
+
+//ジャンルボタンの表示・非表示
+$("#genre").click(function(e){
+	if($(this).hasClass("btn-default")) {
+		$(this).removeClass("btn-default");$(this).addClass("btn-primary");
+	} else {
+		$(this).removeClass("btn-primary");$(this).addClass("btn-default");
+	}
+	$(jenre_button).slideToggle();
+});
+
+//予算変更のセレクトボックスの表示・非表示
+$("#budget-change-button").click(function(e){
+	if($(this).hasClass("btn-default")) {
+		$(this).removeClass("btn-default");$(this).addClass("btn-primary");
+	} else {
+		$(this).removeClass("btn-primary");$(this).addClass("btn-default");
+	}
+	$(select_budget_control).slideToggle();
+});
+//詳細画面の表示非表示の切り替え
+$("#detail").click(function(e){
+	if($(this).hasClass("btn-default")) {
+		$(this).removeClass("btn-default");$(this).addClass("btn-primary");
+	} else {
+		$(this).removeClass("btn-primary");$(this).addClass("btn-default");
+	}
+	$(table_header).slideToggle();
+});
+
+//セレクトボタンから予算の値を取得
 $("select").change(function () {
   	budget = $(this).val();
 	budget = new Array(budget.split( '円' ));
@@ -40,7 +89,7 @@ $("select").change(function () {
 
 	//青色のボタンを取得する
 	var primary_buttons = [];
-	primary_buttons = $('.btn-primary');	
+	primary_buttons = $('#button').find('.btn-primary');	
 	var primary_buttons_id = [];
 	var line_rate = [] ;
 	var line_rate_text = []; 
@@ -180,16 +229,12 @@ $(function(){
 				$("#sum_percentage").text(sum_percentage);
 				//テーブルヘッダーの表示非表示
 				if(sum>0) {
-					$(table_header).show();
 					$(clear_display_button).show();
-					$(progress_bar_display).show();
 					$(cart_area).show();
-					$(analist_block).show();
 					$('#page_title').slideUp();
 				} else {
 					$(table_header).css("display", "none");
 					$(clear_display_button).css("display", "none");
-					$(progress_bar_display).css("display", "none");
 					$(cart_area).css("display", "none");
 					$(analist_block).css("display", "none");
 					$('#page_title').slideDown();
@@ -259,15 +304,12 @@ $(function(){
 				$("#sum_percentage").text(sum_percentage);
 				//テーブルヘッダーを表示する
 				if(sum>0) {
-					$(table_header).show();
 					$(clear_display_button).show();
-					$(progress_bar_display).show();
 					$(cart_area).show();
 					$('#page_title').slideUp();
 				} else {
 					$(table_header).css("display", "none");
 					$(clear_display_button).css("display", "none");
-					$(progress_bar_display).css("display", "none");
 					$(cart_area).css("display", "none");
 					$(analist_block).css("display", "none");
 					$('#page_title').slideDown();
@@ -415,7 +457,6 @@ $(document).ready(function(){
             	//これをhtmlを書き換える
             	$(new_price).html(price_comma);
             	$(new_image).attr("src",data[click_count[clicked_item]]['ExImage']['Url']);
-            	$(new_name).html(data[click_count[clicked_item]]['Name'] + "<br /><button type='button' class='btn btn-default btn-block'>購入する</button>");
             	$(new_name).attr("href",data[click_count[clicked_item]]['Url']);
 		    	$(line_price[0]).html(price_comma);
 		    	$(category_sum).html(category_sum_text);
