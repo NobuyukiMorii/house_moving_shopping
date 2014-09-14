@@ -4,12 +4,13 @@ class ItemsController extends AppController {
 	//yahooコンポーネントとリクエストハンドラーを使う
 	public $components = array('Yahoo','RequestHandler');
 
-	
+	//ランディングページ
 	public function index() {
 		//レイアウトファイルは使わない
 		$this->autoLayout = false;
 	}
 
+	//メインページ
 	public function main() {
 		//レイアウトファイルは使わない
 		$this->autoLayout = false;
@@ -17,8 +18,6 @@ class ItemsController extends AppController {
 		if($this->RequestHandler->isMobile()) {
     		$this->theme = 'Mobile';
 		}
-		//カテゴリーIDを取得するurlを作成する
-		$category_url = $this->Yahoo->get_category_id_url();
 		//最初のビューで表示する時に使うurlを取得する（１件取得）
 		$single_hit = '1';
 		$access_url = $this->Yahoo->get_url($single_hit);

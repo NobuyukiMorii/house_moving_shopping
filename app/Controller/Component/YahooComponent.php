@@ -2,12 +2,6 @@
 
 class YahooComponent extends Component {
 
-    //カテゴリーIDを取得するURLを作成する（後で削除する）
-    public function get_category_id_url() {
-        $category_id_url = "http://shopping.yahooapis.jp/ShoppingWebService/V1/categorySearch?appid=dj0zaiZpPXdENWwzazJwWDVhcSZzPWNvbnN1bWVyc2VjcmV0Jng9Mzc-";
-        return $category_id_url; 
-    }
-
     //各カテゴリー共通のurl（common_url）の配列。$hitは取得する件数。
     public function define_common_url_array($hit) {
         $url['base'] = 'http://shopping.yahooapis.jp/ShoppingWebService/V1/json/itemSearch?';
@@ -28,7 +22,7 @@ class YahooComponent extends Component {
 
         $info['washer']['category_id'] = '2505';
         $info['washer']['price_from'] = '15000';
-        $info['washer']['query'] = '全自動洗濯機';
+        $info['washer']['query'] = 'ドラム式洗濯機';
 
         $info['fridge']['category_id'] = '2505';
         $info['fridge']['price_from'] = '20000';
@@ -43,9 +37,17 @@ class YahooComponent extends Component {
         $info['kettle']['price_from'] = '3000';
         $info['kettle']['query'] = '電気ケトル';
 
+        $info['cleaner']['category_id'] = '2505';
+        $info['cleaner']['price_from'] = '3000';
+        $info['cleaner']['query'] = '掃除機';
+
         $info['rice_cooker']['category_id'] = '2505';
         $info['rice_cooker']['price_from'] = '5000';
         $info['rice_cooker']['query'] = '炊飯器';
+
+        $info['dryer']['category_id'] = '2505';
+        $info['dryer']['price_from'] = '3000';
+        $info['dryer']['query'] = 'ドライヤー';
 
         $info['bookshelf']['category_id'] = '2506';
         $info['bookshelf']['price_from'] = '4000';
@@ -96,32 +98,42 @@ class YahooComponent extends Component {
         $info['chopsticks']['price_from'] = '100';
         $info['chopsticks']['query'] = '箸';
 
+        $info['water']['category_id'] = '2498';
+        $info['water']['price_from'] = '1000';
+        $info['water']['query'] = '水';
+
+        $info['ramen']['category_id'] = '2498';
+        $info['ramen']['price_from'] = '1000';
+        $info['ramen']['query'] = 'カップラーメン';
+
+        $info['rice']['category_id'] = '2498';
+        $info['rice']['price_from'] = '1000';
+        $info['rice']['query'] = '米';
+
+        $info['pasta']['category_id'] = '2498';
+        $info['pasta']['price_from'] = '100';
+        $info['pasta']['query'] = 'パスタ スパゲティ';
+
+        $info['juice']['category_id'] = '2498';
+        $info['juice']['price_from'] = '100';
+        $info['juice']['query'] = 'レトルトカレー';
+
+        $info['toothbrush']['category_id'] = '2508';
+        $info['toothbrush']['price_from'] = '100';
+        $info['toothbrush']['query'] = '歯ブラシ';
+
+        $info['shampoo']['category_id'] = '2508';
+        $info['shampoo']['price_from'] = '100';
+        $info['shampoo']['query'] = 'シャンプー';
+
+        $info['rinse']['category_id'] = '2508';
+        $info['rinse']['price_from'] = '100';
+        $info['rinse']['query'] = 'リンス';
+
         return $info;
 
     }
 
-    //
-    public function define_category_array() {
-        $data['tv']['Category'] = 'テレビ';
-        $data['washer']['Category'] = '洗濯機';
-        $data['fridge']['Category'] = '冷蔵庫';
-        $data['microwave_oven']['Category'] = '電子レンジ';
-        $data['kettle']['Category'] = '電気ケトル';
-        $data['rice_cooker']['Category'] = '炊飯器';
-        $data['bookshelf']['Category'] = '本棚';
-        $data['sofa']['Category'] = 'ソファ';
-        $data['desk']['Category'] = 'デスク';
-        $data['chair']['Category'] = 'チェア';
-        $data['bed']['Category'] = 'ベッド';
-        $data['mattress']['Category'] = 'マットレス';
-        $data['coverlet']['Category'] = '布団';
-        $data['pillow']['Category'] = '枕';
-        $data['frying_pan']['Category'] = 'フライパン';
-        $data['plate']['Category'] = '皿';
-        $data['knife']['Category'] = '包丁';
-        $data['chopsticks']['Category'] = '箸';
-        return $data;
-    }
     //アクセスするurlを取得する
     public function get_url($hit) {
         //扱う配列を定義
@@ -152,7 +164,6 @@ class YahooComponent extends Component {
         $url = array();
         foreach ($parameter_url as $key => $value) {
             $url[$key] = $common_url.$value;
-            
         }
         return $url;
     }
@@ -196,6 +207,9 @@ class YahooComponent extends Component {
                     break;
                     case 'rice_cooker';
                     $data[$key][$i]['Category'] = '炊飯器';
+                    break;
+                    case 'dryer';
+                    $data[$key][$i]['Category'] = 'ドライヤー';
                     break;
                     case 'chair';
                     $data[$key][$i]['Category'] = 'チェア';
@@ -244,6 +258,33 @@ class YahooComponent extends Component {
                     break;
                     case 'chopsticks';
                     $data[$key][$i]['Category'] = '箸';
+                    break;
+                    case 'water';
+                    $data[$key][$i]['Category'] = '水';
+                    break;
+                    case 'ramen';
+                    $data[$key][$i]['Category'] = 'カップ麺';
+                    break;
+                    case 'rice';
+                    $data[$key][$i]['Category'] = 'お米';
+                    break;
+                    case 'pasta';
+                    $data[$key][$i]['Category'] = 'パスタ';
+                    break;
+                    case 'juice';
+                    $data[$key][$i]['Category'] = 'カレー';
+                    break;
+                    case 'cleaner';
+                    $data[$key][$i]['Category'] = '掃除機';
+                    break;
+                    case 'toothbrush';
+                    $data[$key][$i]['Category'] = '歯ブラシ';
+                    break;
+                    case 'shampoo';
+                    $data[$key][$i]['Category'] = 'シャンプー';
+                    break;
+                    case 'rinse';
+                    $data[$key][$i]['Category'] = 'リンス';
                     break;
                 }
             }

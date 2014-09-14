@@ -196,8 +196,7 @@
         </div>
     <footer>
         <div class="col-sm-12" id="service_name">
-            <p class="lead" style="text-align: right; margin-top: 40px;">写真をクリックすると他の商品に変わります。<p>
-            <h3 style="text-align: right;  margin-top : 1px;">Think Shop for 引っ越し</h3>
+            <h3 style="text-align: right;">Think Shop for 引っ越し</h3>
         </div>
     </footer>
     <!--/Main-->
