@@ -197,6 +197,8 @@ $(function(){
 					$(memo).show();
 					$(service_name).show();
 					$("#clone").show();
+					$("#colum-change").removeClass("col-sm-4 col-sm-offset-4");
+					$("#colum-change").addClass("col-sm-3");
 				} else {
 					$(table_header).css("display", "none");
 					$(clear_display_button).css("display", "none");
@@ -207,6 +209,8 @@ $(function(){
 					$(memo).css("display", "none");
 					$(service_name).css("display", "none");
 					$("#clone").css("display", "none");
+					$("#colum-change").removeClass("col-sm-4 col-sm-offset-4");
+					$("#colum-change").addClass("col-sm-3");
 				}
 				//プログレスバーのwidthを変更する
 				$(progress).width(percentage_text);
@@ -289,6 +293,8 @@ $(function(){
 					$(memo).css("display", "none");
 					$(service_name).css("display", "none");
 					$("#clone").css("display", "none");
+					$("#colum-change").removeClass("col-sm-3");
+					$("#colum-change").addClass("col-sm-4 col-sm-offset-4");
 				}
 				//プログレスバーのwidthを変更する
 				$(progress).width('0%');

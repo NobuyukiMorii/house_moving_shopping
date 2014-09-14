@@ -113,7 +113,7 @@
           <div class="col-md-9">
             <div class="panel panel-default">
               <div class="panel-body">
-                <img class="featurette-image img-responsive" align="right" src="<?php echo $this->Html->url('/img/sample3.png'); ?>" alt="Generic placeholder image">
+                <img class="featurette-image img-responsive" align="right" src="<?php echo $this->Html->url('/img/sample4.png'); ?>" alt="Generic placeholder image">
               </div>
             </div>
           </div>

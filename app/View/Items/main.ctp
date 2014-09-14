@@ -23,27 +23,13 @@
 
 	<body>
     <!--tMain-->
-        <div class="col-sm-12" id='page_title'>
-            <h1 style="text-align : center">Think Shop for 引っ越し</h1>
-            <p class="lead" style="text-align : center; margin-bottom: 70px;">「考えて買う」をスマートに</p>
-            <div class="col-sm-4" align="right" style="text-align: left;">
-                <div id="balloon-1-right">
-                    <p class="lead" style="text-align: center; padding: 13% 10%; color:#000000">何を買おう？<p>
-                </div>
-                <div id="balloon-1-right" style="margin-top: 10%;">
-                    <p class="lead" style="text-align: center; padding: 13% 10%; color:#000000">どうやって予算内に収めよう？<p>
-                </div>
+        <div id='page_title' style="color: green; margin-top: 5%;">
+            <div class="col-sm-6">
+                <img src="<?php echo $this->Html->url('/img/hatena.jpg');?>" align="right"> 
             </div>
-            <div class="col-sm-4">
-                <img src="<?php echo $this->Html->url('/img/hatena.jpg');?>" class="center"> 
-            </div>
-            <div class="col-sm-4">
-                <div id="balloon-1-left">
-                    <p class="lead" style="text-align: center; padding: 13% 10%; color:#000000">全部でいくらかかるの？<p>
-                </div>
-                <div id="balloon-1-left" style="margin-top: 10%;">
-                    <p class="lead" style="text-align: center; padding: 13% 10%; color:#000000">Think Shopならそんな考え事がとても簡単！！<br />新生活を彩るアイテムをクリックしてStart！<p>
-                </div>
+            <div class="col-sm-6">
+                <h1 style="text-align : left; margin-top: 20%;">Think Shop</h1>
+                <h1 class="lead" style="text-align : left; margin-top: 5%;">引っ越しってなに買うんだっけ？</h1>
             </div>
         </div>
 
@@ -140,7 +126,7 @@
             </div>
         </div>
 
-        <div class="col-sm-3" style="float: right">
+        <div class="col-sm-4 col-sm-offset-4" id="colum-change">
 
             <div id="clone">
                 <div id="clone_image" align="middle"></div>
@@ -149,10 +135,10 @@
                 <div id="clone_description" align="left"></div>
             </div>
 
-            <div class="panel panel-default">
+            <div class="panel panel-default" align="middle">
                 <div class="panel-heading"><h3 class="panel-title" style="text-align : center">アイテム</h3></div>                
                 <div class="panel-body">
-                    <div class="text-left" id="button">
+                    <div class="text-center" id="button">
                         <?php foreach($data as $key => $value) {
                             echo "<button type='button' id=".$key."_button class='btn btn-default' style='margin : 3px; width : 100px';>".$value['0']['Category']."</button>";
                         }
