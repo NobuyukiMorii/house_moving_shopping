@@ -11,7 +11,7 @@
         <meta property="og:site_name" congtent="Think Shop" />
         <meta property="og:title" content="Thnk Shop" />
         <meta property="og:url" content="http://mory.weblike.jp/house_moving_shopping/Items/main" />
-        <meta property="og:description" content="引っ越しの買い物って、新生活に必要なものをリストアップしたり、予算内でどうやって物を揃えるのか悩んだり、結構頭使いますよね。Think Shopを使えば、リストアップしながら費用や予算の計算が出来て、とっても簡単。引っ越しには Think Shop。" />
+        <meta property="og:description" content="引っ越しの買い物って必要なアイテムをリストアップしたり、予算内でどう見繕うか悩んだり、結構頭使いますよね。Think Shopを使えば、引っ越しの思考が簡単になります。" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="http://mory.weblike.jp/house_moving_shopping/img/shopping_cart.jpg" />
         <!-- FBのshare関連のメタタグここまで -->
