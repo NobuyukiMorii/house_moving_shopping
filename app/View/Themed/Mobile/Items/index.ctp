@@ -89,12 +89,31 @@
       <hr class="featurette-divider">
 
       <footer>
+      <div class="row">
+        <div class="fb-like" data-href="http://mory.weblike.jp/house_moving_shopping/Items/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+      </div>
         <p class="pull-right"><a href="#">Back to top</a></p>
         <p>&copy; 2014 Think Shop</p>
       </footer>
 
     </div>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '368218000002460',
+          xfbml      : true,
+          version    : 'v2.1'
+        });
+      };
 
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
     <?php echo $this->Html->script('bootstrap.min.js');?>
     <?php echo $this->Html->script('docs.min.js');?>
