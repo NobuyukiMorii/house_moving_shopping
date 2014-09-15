@@ -8,6 +8,10 @@ class ItemsController extends AppController {
 	public function index() {
 		//レイアウトファイルは使わない
 		$this->autoLayout = false;
+        //スマートフォン判定
+		if($this->RequestHandler->isMobile()) {
+    		$this->theme = 'Mobile';
+		}
 	}
 
 	//メインページ

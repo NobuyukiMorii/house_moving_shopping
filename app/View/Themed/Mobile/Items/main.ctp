@@ -13,7 +13,7 @@
         <meta property="og:url" content="http://mory.weblike.jp/house_moving_shopping/Items/main" />
         <meta property="og:description" content="引っ越しの買い物って必要なアイテムをリストアップしたり、予算内でどう見繕うか悩んだり、結構頭使いますよね。Think Shopを使えば、引っ越しの思考が簡単になります。" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="http://mory.weblike.jp/house_moving_shopping/img/shopping_cart.jpg" />
+        <meta property="og:image" content="http://mory.weblike.jp/house_moving_shopping/img/hatena.jpg" />
         <!-- FBのshare関連のメタタグここまで -->
         <?php echo $this->Html->css('bootstrap.min.css');?>
         <?php echo $this->Html->css('styles.css');?>
@@ -22,7 +22,7 @@
 	</head>
 
 	<body>
-    <!--tMain-->
+    <!--Main-->
         <div class="col-sm-12" id='page_title'>
             <h1 style="text-align : center">Think Shop</h1>
             <p class="lead" style="text-align : center">「考えて買う」をスマートに</p>
